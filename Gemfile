@@ -26,7 +26,7 @@ gem 'devise', github: 'plataformatec/devise'
 gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-gplus', '~> 2.0'
 
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'

@@ -27,7 +27,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     redirect_to @redirect_to
   end
 
-  def google_oauth2
+  def gplus
     if user_signed_in?
       if current_user.email == request.env["omniauth.auth"].info.email
         current_user.add_fb_account(request.env["omniauth.auth"])
@@ -45,7 +45,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         set_flash_message(:notice, :success, :kind => "GPlus") if is_navigational_format?
         @redirect_to = root_url
       else
-        session["devise.google_data"] = request.env["omniauth.auth"]
+        session["devise.gplus"] = request.env["omniauth.auth"]
         @redirect_to = new_user_registration_url
       end
     end
