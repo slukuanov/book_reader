@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :gplus]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
 
   default_scope  { order('created_at DESC') }
   scope :sort_by_id, -> { order('id') }
@@ -141,8 +141,8 @@ class User < ActiveRecord::Base
     self.provider == "facebook" && self.uid != nil
   end
 
-  def has_gplus_account?
-    self.provider == "gplus" && self.uid != nil
+  def has_google_oauth2_account?
+    self.provider == "google_oauth2" && self.uid != nil
   end
 
   def unconfirmed?
