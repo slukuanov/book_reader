@@ -8,8 +8,24 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require ./bootstrap_and_overrides
- *= require ./font-awesome
+ *= require bootstrap.min
+ *= require font-awesome
  *= require_self
- *= require_tree ./application
+ *= require_tree .
 */
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../assets/glyphicons-halflings-regular.eot');
+    src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+    url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+    url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+@font-face {
+    font-family:'FontAwesome';
+    src:url('../assets/fontawesome-webfont.eot?v=4.3.0');
+    src:url('../assets/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'),url('../assets/fontawesome-webfont.woff2?v=4.3.0') format('woff2'),url('../assets/fontawesome-webfont.woff?v=4.3.0') format('woff'),url('../assets/fontawesome-webfont.ttf?v=4.3.0') format('truetype'),url('../assets/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    font-weight:normal;
+    font-style:normal
+}

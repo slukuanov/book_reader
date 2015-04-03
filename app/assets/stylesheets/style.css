@@ -1,65 +1,71 @@
+@charset "utf-8";
+/* CSS Document */
 body{
-  font-family: 'Roboto', sans-serif;
-  color: #565656;
+	font-family: 'Roboto', sans-serif;
+	color: #565656;
 }
 .navbar-nav{
-  padding-top: 10px;
+	padding-top: 10px;
 }
 .navbar-wrapper{
-  background-color: #fff;
-  border-bottom: 1px solid #dadada;
+	background-color: #fff;
+	border-bottom: 1px solid #dadada;
 }
 .navbar-default{
-  background-color: transparent;
-  border-color: transparent;
+	background-color: transparent;
+	border-color: transparent;
 }
 .navbar-right .badge{
-  position: relative;
-  top: -10px;
-  right: 3px;
-  background-color: #d9534f;
+	position: relative;
+	top: -10px;
+	right: 3px;
+	background-color: #d9534f;
 }
 .header .navbar-nav>li>a{
-  font-size: 16px;
+	font-size: 16px;
 }
-.jumbotron {
-  background: url('slide-content.jpg') repeat-x top center;
-  background-size: cover;
-  h1 {
-    color:#fff;
-    font-size: 36px;
-  }
-  p {
-    color:#fff;
-    font-size: 18px;
-  }
-  .btn-primary {
-    background-color: transparent;
-    border-color: #9aafba;
-  }
+.jumbotron{
+	background:url('slide-content.jpg') top center repeat-x ;
+	background-size: cover;
 }
-.thumbnail {
+.jumbotron h1{
+	color:#fff;
+	font-size: 36px;
+}
+.jumbotron p{
+	color:#fff;
+	font-size: 18px;
+}
+.jumbotron .btn-primary{
+	background-color: transparent;
+border-color: #9aafba;
+}
+.thumbnail{
 	padding: 0px;
 	position: relative;
     overflow: hidden;
     cursor: pointer;
-  .overlay {
-    position: absolute;
-	width: 100%;
-	height: 100%;
-	background: rgba(70,142,206,.9);
-	color: #fff;
-    padding: 45px 20px;
-	bottom: -100px;
-	transition: 1s;
-	position: absolute;
-    bottom: -430px;
-    h4 {
-      color: #fff;
-    }
-  }
 }
 
+.thumbnail .overlay{
+		position: absolute;
+
+	  width: 100%;
+	  height: 100%;
+	  background: rgba(70,142,206,.9);
+
+	  color: #fff;
+	  padding: 45px 20px;
+	   bottom: -100px;
+	    transition: 1s;
+	       position: absolute;
+    bottom: -430px;
+
+
+}
+.thumbnail .overlay h4{
+	color: #fff;
+}
 .thumbnail:hover .overlay{
   	  transition: 1s;
     bottom: 0;
@@ -120,7 +126,7 @@ ul.follow_us li a:hover i{
     position: relative;
 }
 .right-inner-addon input {
-    padding-right: 30px;    
+    padding-right: 30px;
 }
 .right-inner-addon i {
     position: absolute;
@@ -130,9 +136,9 @@ ul.follow_us li a:hover i{
 }
 
 .left_search-bar{
-	  white-space: nowrap; 
-    width: 12em; 
+	  white-space: nowrap;
+    width: 12em;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
     border: 1px solid #000000;
 }
