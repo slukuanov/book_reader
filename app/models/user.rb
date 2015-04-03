@@ -86,6 +86,8 @@ class User < ActiveRecord::Base
         p auth
         user.add_fb_account(auth)
       else
+        p "AHAHHA2"
+        p auth
         user = User.create(
             first_name: auth.extra.raw_info.first_name,
             last_name: auth.extra.raw_info.last_name,
