@@ -23,6 +23,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @redirect_to = new_user_registration_url
       end
     end
+    
+    redirect_to @redirect_to
   end
 
   def google_oauth2
@@ -47,5 +49,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @redirect_to = new_user_registration_url
       end
     end
+
+    redirect_to @redirect_to
   end
 end
