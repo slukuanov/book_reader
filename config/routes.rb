@@ -4,10 +4,10 @@ Rails.application.routes.draw do
       :registrations => "users/registrations",
       :sessions => 'users/sessions'
   }
-  devise_scope :users do
-    match '/users/auth/gplus/callback' => 'users/omniauth_callbacks#gplus', via: [:get, :post]
-    #root :to => "users#new"
-  end
+  # devise_scope :user do
+  #   match 'auth/gplus/callback' => 'users/omniauth_callbacks#gplus', via: [:get, :post]
+  #   #root :to => "users#new"
+  # end
   get 'welcome/index'
   root 'welcome#index'
 
