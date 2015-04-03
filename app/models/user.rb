@@ -78,27 +78,14 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(auth)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    p "AHAHHA1"
     unless user
       user = User.where(email: auth.info.email).first
       if user
-        p "AHAHHA"
-        p auth
         user.add_fb_account(auth)
       else
-        p "AHAHHA2"
-        p "first_name#{auth.extra.raw_info.first_name}"
-        p "last_name#{auth.extra.raw_info.last_name}"
-        p "birthday#{auth.extra.raw_info.birthday.blank?}"
-        p "image#{auth.info.image}"
-        p "location#{auth.info.location}"
-        p "provider#{auth.provider}"
-        p "uid#{auth.uid}"
-        p "email#{auth.info.email}"
-        p "friendly_token#{Devise.friendly_token[0,20]}"
         user = User.create(
-            first_name: auth.extra.raw_info.first_name,
-            last_name: auth.extra.raw_info.last_name,
+            first_name: auth.extra.raw_info.first_name || auth.info.first_name,
+            last_name: auth.extra.raw_info.last_name || auth.info.last_name,
             birthday: auth.extra.raw_info.birthday.blank? ? nil : Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y'),
             picture: auth.info.image,
             location: auth.info.location,
