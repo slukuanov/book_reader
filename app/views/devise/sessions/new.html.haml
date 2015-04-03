@@ -3,10 +3,11 @@
     = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name, :format => :html), data: {rpost: ajax_form}) do |f|
       .title-login
         Sign In
-      .facebook-butt
-        = link_to image_tag("buttons/login_fb_button-#{I18n.locale}.jpg"), '/users/auth/facebook/', :class => "log popup", :"data-width" => 600, :"data-height" => 400
-      .gplus-butt
-        = link_to 'Google+', '/users/auth/google_oauth2/', :class => "btn btn-error popup", :"data-width" => 600, :"data-height" => 400
+      .row.social-buttons
+        .facebook-butt
+          = link_to image_tag("buttons/registrate_fb_button-#{I18n.locale}.png"), '/users/auth/facebook/', :class => "popup", :"data-width" => 600, :"data-height" => 400
+        .gplus-butt
+          = link_to image_tag("buttons/Red-signin_Google_base_44dp.png"), '/users/auth/google_oauth2/', :class => "popup", :"data-width" => 600, :"data-height" => 400
       .auth-separator
         .auth-separator-inner
           Or
@@ -21,7 +22,7 @@
           = link_to 'Forgot your password?', new_password_path(resource_name), class: "remember_link"
       .border-bottom-dotted{style: "margin-top: 20px;"}
         .form-actions{style: "padding-bottom: 10px; text-align: center;"}
-          = f.button :submit, "Submit", class: "btn-lg btn btn-warning text-uppercase"
+          = f.button :submit, "Submit", class: "btn btn-warning"
       .reg-bottom
       .member
         Don't have account?

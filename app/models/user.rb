@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
 
   def add_fb_account(auth)
     self.update({provider: auth.provider, uid: auth.uid})
-    self.update({birthday: Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y')}) unless self.birthday
+    self.update({birthday: auth.extra.raw_info.birthday.blank? ? nil : Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y')}) unless self.birthday
     self.update({location: auth.info.location}) unless self.location
     self.update({picture: auth.info.image}) unless self.has_avatar? && self.has_picture?
     self.update({role: "confirmed"}) if self.unconfirmed?
