@@ -78,10 +78,12 @@ class User < ActiveRecord::Base
 
   def self.find_for_facebook_oauth(auth)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
-
+    p "AHAHHA1"
     unless user
       user = User.where(email: auth.info.email).first
       if user
+        p "AHAHHA"
+        p auth
         user.add_fb_account(auth)
       else
         user = User.create(
