@@ -1,0 +1,153 @@
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/bootstrap/theme";
+
+// @import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+//@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+//@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/glyphicons-halflings-regular.eot');
+  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+  color: #565656;
+}
+.navbar-nav{
+  padding-top: 10px;
+}
+.navbar-wrapper{
+  background-color: #fff;
+  border-bottom: 1px solid #dadada;
+}
+.navbar-default{
+  background-color: transparent;
+  border-color: transparent;
+}
+.navbar-right .badge{
+  position: relative;
+  top: -10px;
+  right: 3px;
+  background-color: #d9534f;
+}
+.header .navbar-nav>li>a{
+  font-size: 16px;
+}
+.jumbotron {
+  background: url('slide-content.jpg') repeat-x top center;
+  background-size: cover;
+  h1 {
+    color:#fff;
+    font-size: 36px;
+  }
+  p {
+    color:#fff;
+    font-size: 18px;
+  }
+  .btn-primary {
+    background-color: transparent;
+    border-color: #9aafba;
+  }
+}
+.thumbnail {
+  padding: 0px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(70,142,206,.9);
+    color: #fff;
+    padding: 45px 20px;
+    bottom: -100px;
+    transition: 1s;
+    position: absolute;
+    bottom: -430px;
+    h4 {
+      color: #fff;
+    }
+  }
+}
+
+.thumbnail:hover .overlay{
+  transition: 1s;
+  bottom: 0;
+}
+
+.footer{
+  border-top:1px solid #dadada;
+}
+
+.footer-right li a {
+  padding: 10px 5px;
+}
+.mainwrapper_sub{
+  margin: 50px 0;
+  padding: 50px;
+  background-color: #fff;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+  box-shadow: none;
+}
+.gray_text{
+  color: #b4b4b4;
+}
+.inline{
+  display: inline-block;
+  vertical-align: middle;
+}
+.glyphicon-c{
+  font-size: 25px;
+}
+
+.normal_weight{
+  font-weight: normal;
+}
+ul.follow_us{
+  list-style-type: none;
+  padding-left: 0;
+}
+ul.follow_us li a i{
+  height: 50px;
+  width: 50px;
+  border: 1px solid #b4b4b4;
+  border-radius: 50%;
+  padding: 12px;
+  text-align: center;
+  margin: 0 2px;
+}
+ul.follow_us li a:hover i{
+  color: #b4b4b4;
+}
+.orange_text{
+  color: #ffae00;
+}
+.border-right{
+  border-right: 1px solid #e8e8e8;
+}
+.right-inner-addon {
+  position: relative;
+}
+.right-inner-addon input {
+  padding-right: 30px;
+}
+.right-inner-addon i {
+  position: absolute;
+  right: 0px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.left_search-bar{
+  white-space: nowrap;
+  width: 12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid #000000;
+}
