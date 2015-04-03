@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get '/user/send_confirmation_email', to: 'users/users#send_confirmation_email', as: 'send_confirmation_email'
   delete '/user/fb_account_delete', to: 'users/users#remove_fb_account', as: 'remove_fb_account'
   get '/account/confirm/:confirmation_token', to: 'users/confirmation#confirm_user', as: 'confirmation'
+  get '/users/auth/google_oauth2/callback', to: 'users/omniauth_callbacks#google_oauth2', as: 'google_oauth2'
 end
