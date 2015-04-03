@@ -1,0 +1,73 @@
+= content_for :sidebar do
+  = render partial: 'common/sidebar/user'
+= content_for :attr_body_class do
+  top-border
+= content_for :attr_h1 do
+  %h1= t('sidebar.links.basic_info')
+
+-if @user.role == "unconfirmed"
+  %p= t('message.confirmation')
+  %p= link_to t('button.confirmation.send'), send_confirmation_email_path
+
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true }) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :first_name, :required => true
+    = f.input :last_name, :required => true
+    /= f.input :location
+    = f.input :newsletter, :as => :boolean
+    = f.input :birthday, as: :date, start_year: Date.today.year - 100, |
+      end_year: Date.today.year, include_blank: true                   |
+    = f.input :email, :required => true
+    .control-group
+      %label Facebook
+      .controls
+        - if @user.has_fb_account?
+          - if @user.has_password?
+            .free-text
+              = t('activerecord.attributes.user.disconect_from_fb').html_safe
+            .fb-link
+              = link_to t('activerecord.attributes.user.disconect_from_fb_button'), remove_fb_account_path, {:data => {:method => 'delete'}}
+            .clear
+          - else
+            .free-text
+              = t('message.fb.without_pass')
+            .clear
+        - else
+          .free-text
+            = t('activerecord.attributes.user.connect_with_fb').html_safe
+          .fb-link
+            = link_to t('activerecord.attributes.user.connect_with_fb_button'), user_omniauth_authorize_path(:facebook), :class => "popup", :"data-width" => 600, :"data-height" => 400
+          .clear
+    .control-group
+      = f.label :avatar
+      .controls
+        .fileupload
+          - if @user.has_avatar?
+            .thumb-view
+              = image_tag @user.avatar.url(:medium)
+          %div
+            %span.btn.btn-file
+              = f.file_field :avatar
+
+  .form-actions
+    = f.button :submit, t('activerecord.actions.buttons.update_profile')
+    /= link_to 'Delete account', registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'remove'
+
+= form_for(resource, :url => { :action => "update_password", :method => 'put' }, :html => {:class => 'simple_form'} ) do |f|
+  .control-group
+    = f.label :password
+    .controls
+      = f.password_field :password, :autocomplete => "off"
+  .control-group
+    = f.label :password_confirmation
+    .controls
+      = f.password_field :password_confirmation
+  - if resource.has_password?
+    .control-group
+      = f.label :current_password
+      .controls
+        /%i= t('message.current_pass')
+        = f.password_field :current_password, :required => true
+  .form-actions
+    %input{:type => "submit", :value => t('activerecord.actions.buttons.update_password')}

@@ -7,6 +7,7 @@ gem 'pg'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
+gem 'haml-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
@@ -15,7 +16,17 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'simple_form', branch: '3.0.0.rc'
+gem 'country_select'
+gem 'awesome_nested_fields', github: 'manzhikov/awesome_nested_fields'
+gem 'remotipart', '~> 1.2'
+
 gem 'less-rails'
+gem 'devise', github: 'plataformatec/devise'
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-gplus', '~> 2.0'
 
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'

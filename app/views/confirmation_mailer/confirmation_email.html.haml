@@ -1,0 +1,6 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    = (@email_obj % {confirmation_url: @url }).html_safe
