@@ -87,15 +87,15 @@ class User < ActiveRecord::Base
         user.add_fb_account(auth)
       else
         p "AHAHHA2"
-        p auth.extra.raw_info.first_name
-        p auth.extra.raw_info.last_name
-        p auth.extra.raw_info.birthday.blank?
-        p auth.info.image
-        p auth.info.location
-        p auth.provider
-        p auth.uid
-        p auth.info.email
-        p Devise.friendly_token[0,20]
+        p "first_name#{auth.extra.raw_info.first_name}"
+        p "last_name#{auth.extra.raw_info.last_name}"
+        p "birthday#{auth.extra.raw_info.birthday.blank?}"
+        p "image#{auth.info.image}"
+        p "location#{auth.info.location}"
+        p "provider#{auth.provider}"
+        p "uid#{auth.uid}"
+        p "email#{auth.info.email}"
+        p "friendly_token#{Devise.friendly_token[0,20]}"
         user = User.create(
             first_name: auth.extra.raw_info.first_name,
             last_name: auth.extra.raw_info.last_name,
