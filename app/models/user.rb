@@ -142,7 +142,7 @@ class User < ActiveRecord::Base
   end
 
   def has_gplus_account?
-    self.provider == "gplus" && self.uid != nil
+    self.provider == "google_oauth2" && self.uid != nil
   end
 
   def unconfirmed?
