@@ -4,6 +4,10 @@ Rails.application.routes.draw do
       :registrations => "users/registrations",
       :sessions => 'users/sessions'
   }
+  devise_scope :users do
+    get '/auth/gplus/callback' => 'users/omniauth_callbacks#gplus'
+    #root :to => "users#new"
+  end
   get 'welcome/index'
   root 'welcome#index'
 
