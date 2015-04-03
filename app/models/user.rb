@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
         user = User.create(
             first_name: auth.extra.raw_info.first_name,
             last_name: auth.extra.raw_info.last_name,
-            birthday: Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y'),
+            birthday: auth.extra.raw_info.birthday.blank? ? nil : Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y'),
             picture: auth.info.image,
             location: auth.info.location,
             provider: auth.provider,
