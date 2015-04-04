@@ -68,11 +68,52 @@
                             %a{:href => "#"} Separated link
                     - if user_signed_in?
                       %li= link_to 'Logout', destroy_user_session_path, method: :delete
-                    - else
-                      %li= link_to 'Sign Up', new_user_registration_path
-                      %li= link_to 'Sign In', new_user_session_path
 - flash.each do |key, value|
   .global-alert.col-md-6.col-md-offset-3{class: "#{key}"}
     %div
       = value
 = yield
+
+#login-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+
+#registration-via-email-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel2", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+
+#registrations-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel1", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-body
+        %h3#myModalLabel1.modal-title.text-center
+          Sign Up for
+          %span.blue-color docnhanh
+        .signup-btn
+          %ul.ualink-social-link
+            %li
+              %a.btn.btn-facebook.popup{:href => "/users/auth/facebook/", :"data-width" => 600, :"data-height" => 400}
+                %i.fa.fa-facebook
+                %span Sign Up With Facebook
+            %li
+              %a.btn.btn-google.popup{:href => "/users/auth/google_oauth2/", :"data-width" => 600, :"data-height" => 400}
+                %i.fa.fa-google-plus
+                %span Sign Up With Google+
+            %li
+              %a.btn.btn-email{:href => new_user_registration_path,  'data-remote' => 'true', "data-toggle" => "modal", "data-dismiss" => "modal", "data-target" => "#registration-via-email-modal"}
+                %i.fa.fa-email
+                  = image_tag("email.png")
+                %span Sign Up With Email
+          %p.text-center.already Already have an account?
+      .center-or
+        %p.text-center.center-heading Or
+      .modal-body
+        %ul.ualink-social-link
+          %li
+            %a.btn.btn-facebook.popup{:href => "/users/auth/facebook/", :"data-width" => 600, :"data-height" => 400}
+              %i.fa.fa-facebook
+              %span Login With Facebook
+          %li
+            %a.btn.btn-google.popup{:href => "/users/auth/google_oauth2/", :"data-width" => 600, :"data-height" => 400}
+              %i.fa.fa-google-plus
+              %span Login With Google+

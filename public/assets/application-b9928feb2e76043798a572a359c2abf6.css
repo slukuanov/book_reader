@@ -54,8 +54,8 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
   border-radius: 2px;
   margin-top: 15px;
   padding: 3px 15px 3px 35px !important;
-  border: 1px solid #3D89CC !important;
-  color: #5fa279;
+  border: 1px solid #000000 !important;
+  color: #000000;
   font-weight: 600;
   background: url(/assets/frontend/elements/info_msg_icon.png) 15px center no-repeat;
 }
@@ -370,4 +370,9 @@ ul.follow_us li a:hover i{
     overflow: hidden;
     text-overflow: ellipsis;
     border: 1px solid #000000;
+}
+
+.input.error_valid {
+    border: solid 1px red;
+    border-radius: 6px;
 }

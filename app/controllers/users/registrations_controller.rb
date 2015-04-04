@@ -1,47 +1,32 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_user
   before_action :authenticate_user!
+  respond_to :html, :json
 
   def new
     build_resource({})
 
     if request.xhr?
       respond_to do |format|
-        format.html { render "devise/registrations/new_bk", locals: {ajax_form: true}, :layout => false }
-        format.js { render "devise/registrations/new_bk", locals: {ajax_form: true}, :layout => false }
+        format.html { render "devise/registrations/new", locals: {ajax_form: true}, :layout => false }
+        format.js { render "devise/registrations/new", locals: {ajax_form: true}, :layout => false }
       end
     else
       respond_to do |format|
-        format.html { render "devise/registrations/new_bk", locals: {ajax_form: false} }
-        format.js { render "devise/registrations/new_bk", locals: {ajax_form: false} }
+        format.html { render "devise/registrations/new", locals: {ajax_form: false} }
+        format.js { render "devise/registrations/new", locals: {ajax_form: false} }
       end
     end
   end
 
   def create
     build_resource(sign_up_params)
+
     if resource.save
-
-      yield resource if block_given?
-      if resource.active_for_authentication?
-
-        set_flash_message :notice, :signed_up if is_navigational_format?
-        sign_up(resource_name, resource)
-        respond_with resource, :location => after_sign_up_path_for(resource)
-      else
-        set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
-        expire_session_data_after_sign_in!
-        respond_with resource, :location => after_inactive_sign_up_path_for(resource)
-      end
+      sign_up(resource_name, resource)
+      render json: true
     else
-      clean_up_passwords resource
-      # path_new = params[:reg_class] == "1" ? "devise/registrations/new" : "devise/registrations/new_bk"
-      path_new = "devise/registrations/new"
-      if request.xhr?
-        render path_new, locals: {ajax_form: true}, :layout => false, status: :unauthorized
-      else
-        render path_new, locals: {ajax_form: false}
-      end
+      render json: resource.errors, status: 403
     end
   end
 

@@ -1,0 +1,22 @@
+.modal-body
+  %h3#myModalLabel2.modal-title.text-center
+    Registration to
+    %span.blue-color docnhanh
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :format => :js, :html=> { class: 'form-horizontal login-form', :'data-type' => 'json' }) do |f|
+    %fieldset
+      .form-group
+        .col-sm-12
+          = f.input :first_name, label: false, :required => true, :input_html => { class: 'form-control input-md', placeholder: "First Name" }
+      .form-group
+        .col-sm-12
+          = f.input :email, label: false, :required => true, :input_html => { class: 'form-control input-md', placeholder: "Email" }
+      .form-group
+        .col-sm-12
+          = f.input :password, label: false, :required => true, :input_html => { class: 'form-control input-md', placeholder: "Password" }
+      .form-group
+        .col-sm-12
+          = f.input :password_confirmation, label: false, :required => true, :input_html => { class: 'form-control input-md', placeholder: "Password confirmation" }
+      .form-group.text-center
+        .col-sm-12
+          = f.button :submit, "Submit", class: "btn btn-md btn-primary"
+      = link_to 'Already have an account?', new_user_session_path, class: 'pull-right already', :remote => true, "data-toggle" => "modal", "data-dismiss" => "modal", "data-target" => "#login-modal"

@@ -142,3 +142,8 @@ ul.follow_us li a:hover i{
     text-overflow: ellipsis;
     border: 1px solid #000000;
 }
+
+.input.error_valid {
+    border: solid 1px red;
+    border-radius: 6px;
+}
