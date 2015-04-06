@@ -242,6 +242,6 @@ Devise.setup do |config|
   require "omniauth-facebook"
   require "omniauth-google-oauth2"
   #OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
-  config.omniauth :facebook, '1390821371239870', '9386de45787a5695028ca4f73f9a17be', scope: 'email,user_birthday,read_stream,user_location', :display => 'popup'#, :strategy_class => OmniAuth::Strategies::Facebook
-  config.omniauth :google_oauth2, '671940979016-dq0vfg421dgi076sdlbt4kijacemsu0u.apps.googleusercontent.com', 'UFQqrxRTrylgWXgX2NEO2EHu', scope: 'userinfo.email', :display => 'popup'#, :strategy_class => OmniAuth::Strategies::Facebook
+  config.omniauth :facebook, '1390821371239870', '9386de45787a5695028ca4f73f9a17be', {:scope => 'email,user_birthday,read_stream,user_location', :display => 'page'}
+  config.omniauth :google_oauth2, '671940979016-dq0vfg421dgi076sdlbt4kijacemsu0u.apps.googleusercontent.com', 'UFQqrxRTrylgWXgX2NEO2EHu', scope: 'userinfo.email', :display => 'page'#, :strategy_class => OmniAuth::Strategies::Facebook
 end
