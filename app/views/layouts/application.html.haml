@@ -40,17 +40,6 @@
                           .right-inner-addon
                             %i.fa.fa-search
                             %input.form-control{:placeholder => "Search", :type => "search"}/
-                    %li
-                      %a{:href => "#"}
-                        %span.glyphicon.glyphicon-bell{"aria-hidden" => "true"}
-                        %span.label.label-danger.badge 2
-                    %li
-                      %a{:href => "#"}
-                        %span.glyphicon.glyphicon-star{"aria-hidden" => "true"}>
-                        Wishlist
-                    %li
-                      %a{:href => "#"}
-                        %span.glyphicon.glyphicon-align-justify{"aria-hidden" => "true"}
                     - if user_signed_in?
                       %li.dropdown
                         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -64,14 +53,12 @@
                           %li
                             %a{:href => "#"} Something else here
                           %li.divider
-                          %li
-                            %a{:href => "#"} Separated link
-                    - if user_signed_in?
-                      %li= link_to 'Logout', destroy_user_session_path, method: :delete
-- flash.each do |key, value|
-  .global-alert.col-md-6.col-md-offset-3{class: "#{key}"}
-    %div
-      = value
+                          - if user_signed_in?
+                            %li= link_to 'Logout', destroy_user_session_path, method: :delete
+-#- flash.each do |key, value|
+-#  .global-alert.col-md-6.col-md-offset-3{class: "#{key}"}
+-#    %div
+-#      = value
 = yield
 
 #login-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
