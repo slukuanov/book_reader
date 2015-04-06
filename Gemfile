@@ -27,6 +27,7 @@ gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'cancan'
 
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'

@@ -1,0 +1,42 @@
+=div_for(@user) do
+  %p
+    email: #{@user.email}
+  %p
+    first name: #{@user.first_name}
+  %p
+    last name: #{@user.last_name}
+  %p
+    role: #{@user.role}
+  %p 
+    FB account:
+    - if @user.has_fb_account?
+      %a{:href =>"http://www.facebook.com/#{@user.uid}"} http://www.facebook.com/#{@user.uid}
+    - else
+      none
+  %p
+    Birthday: #{@user.birthday ? time_tag(@user.birthday) : "not set"}
+  %p
+    Age: #{@user.age}
+  %p
+    Location: #{@user.location}
+  %p
+    Language: #{@user.language}
+  %p
+    Avatar: #{@user.has_avatar? ? image_tag(@user.avatar.url(:thumb)) : "none"}
+  %p
+    Has password: #{@user.has_password? ? "yes" : "no"}
+  %p
+    Current sign in at: #{@user.last_sign_in_at ? time_tag(@user.last_sign_in_at) : "not logged yet"}
+  %p
+    Last sign in at: #{@user.last_sign_in_at ? time_tag(@user.last_sign_in_at) : "not logged yet"}
+  %p
+    Current sign in ip: #{@user.current_sign_in_ip}
+  %p
+    Last sign in ip: #{@user.last_sign_in_ip}
+  %p
+    Created at: #{time_tag(@user.created_at)}
+  %p
+    Updated_at: #{time_tag(@user.updated_at)}
+= link_to 'back', admin_users_path
+
+

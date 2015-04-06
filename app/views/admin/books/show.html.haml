@@ -1,0 +1,10 @@
+=div_for(@book) do
+  %p
+    Title: #{@book.title}
+  %p
+    Created At: #{time_tag(@book.created_at)}
+  %p
+    Updated At: #{time_tag(@book.updated_at)}
+= link_to 'back', admin_books_path
+
+

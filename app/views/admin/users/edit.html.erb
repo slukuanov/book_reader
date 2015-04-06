@@ -1,0 +1,24 @@
+<%= simple_form_for @user, :url => { :action => "update", :method => 'put' } do |f| %>
+    <%= f.input :first_name, :autofocus => true, :required => true %> 
+    <%= f.input :last_name, :required => true %>   
+    <%= f.input :location %>  
+    <%= f.input :birthday, as: :date, start_year: Date.today.year - 100,
+                              end_year: Date.today.year, include_blank: true%> 
+    <%= f.input :email, :required => true %>
+    <%= f.file_field :avatar %>
+    <%= f.input :password_confirmation %>
+    <%= f.input :password %>
+    <%= f.input :newsletter, :as => :boolean %>
+    <%= f.input :role do %>
+      <%= f.select :role, User::ROLES.map { |r| [r] } %>
+    <% end %>
+    <%= f.input :language do %>
+      <%= f.select :language, ["en", "fr"].map { |l| [l] }, include_blank: true %>
+    <% end %>
+
+  
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+    <%= link_to 'back', admin_users_path %>
+<% end %>

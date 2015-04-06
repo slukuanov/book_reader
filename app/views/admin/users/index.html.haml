@@ -1,0 +1,39 @@
+:ruby
+  model_class = User
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+
+%p
+%form{:action => search_admin_users_path, :method => "post", :id => 'search'}
+  %fieldset
+    %label{:for => 'id_search'}
+      Search by name or email:
+    %input{:type => "text", :name => "search_query", :id => 'id_search', :value => @search_query}
+  %button{:type => "submit", :class => 'btn'}
+    Search
+  %a{:href => admin_users_path, :class => 'btn'}
+    Reset
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th= link_to 'ID', sort_by_id_admin_users_path
+      %th= link_to 'name', sort_by_first_name_admin_users_path
+      %th email
+      %th= link_to 'role', sort_by_role_admin_users_path
+      %th= link_to 'signed up', admin_users_path
+      %th= link_to 'last seen', sort_by_last_seen_admin_users_path
+      %th actions
+  %tbody
+    - @users.each do |user|
+      %tr{id: user.id}
+        %td= link_to user.id, admin_user_path(user)
+        %td= user.full_name
+        %td= user.email
+        %td= user.role
+        %td= time_tag(user.created_at)
+        %td= user.last_sign_in_at ? time_tag(user.last_sign_in_at) : "not logged yet"
+        %td
+          = link_to 'Edit', edit_admin_user_path(user), :class => 'button-edit', :title => 'Edit'
+          = link_to 'Delete', admin_user_path(user), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'button-delete', :title => 'Delete'
+          = link_to 'Login', become_admin_user_path(user), :class => 'button-login', :title => 'Login'

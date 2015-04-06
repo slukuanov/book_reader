@@ -1,0 +1,75 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_tree ./libs
+ *= require_tree ./admin
+ *= require bootstrap.min
+ *= require font-awesome
+ *= require_self
+*/
+
+
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('../../assets/glyphicons-halflings-regular.eot');
+    src: url('../../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+    url('../../assets/glyphicons-halflings-regular.woff') format('woff'),
+    url('../../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+    url('../../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+@font-face {
+    font-family:'FontAwesome';
+    src:url('../../assets/fontawesome-webfont.eot?v=4.3.0');
+    src:url('../../assets/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'),url('../../assets/fontawesome-webfont.woff2?v=4.3.0') format('woff2'),url('../../assets/fontawesome-webfont.woff?v=4.3.0') format('woff'),url('../../assets/fontawesome-webfont.ttf?v=4.3.0') format('truetype'),url('../../assets/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    font-weight:normal;
+    font-style:normal
+}
+
+body {
+    padding-top: 60px;
+}
+
+.button-facebook,
+.button-login,
+.button-delete,
+.button-edit {
+    display: inline-block;
+    *display: inline;
+    *zoom: 0;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 16px;
+    height: 16px;
+}
+
+.button-edit {
+    background: transparent url('buttons/edit.png') left top no-repeat;
+}
+
+.button-delete {
+    background: transparent url('buttons/delete.png') left top no-repeat;
+}
+
+.button-login {
+    background: transparent url('buttons/login.png') left top no-repeat;
+}
+
+.button-facebook {
+    background: transparent url('buttons/facebook.png') left top no-repeat;
+}
+
+.class.form-horizontal .controls {
+    margin-left: 0px;
+}
+
+.nav-pills > li > .text {
+    padding: 8px 8px 8px 0;
+}

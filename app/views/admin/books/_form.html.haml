@@ -1,0 +1,15 @@
+= simple_form_for [:admin, @book], :html => { :class => 'form-horizontal' } do |f|
+  .form-group
+    .col-sm-12
+      %b Title
+    .col-sm-12
+      = f.input :title, label: false, input_html: {class: 'col-sm-6'}
+  .form-group
+    .col-sm-12
+      %b Categories
+    .col-sm-12
+      = f.input :category_ids, label: false, collection: Category.all, input_html: {class: 'col-sm-6 chzn-select', multiple: true}
+
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to 'Cancel', admin_books_path, :class => 'btn'

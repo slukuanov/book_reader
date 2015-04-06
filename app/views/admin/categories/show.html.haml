@@ -1,0 +1,10 @@
+=div_for(@category) do
+  %p
+    Title: #{@category.title}
+  %p
+    Created At: #{time_tag(@category.created_at)}
+  %p
+    Updated At: #{time_tag(@category.updated_at)}
+= link_to 'back', admin_categories_path
+
+
