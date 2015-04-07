@@ -12,7 +12,6 @@
  *= require_tree ./admin
  *= require bootstrap.min
  *= require font-awesome
- *= require_self
 */
 
 

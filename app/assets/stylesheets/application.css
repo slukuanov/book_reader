@@ -10,8 +10,8 @@
  *
  *= require bootstrap.min
  *= require font-awesome
- *= require_self
- *= require_tree .
+ *= require style
+ *= require layouts
 */
 @font-face {
     font-family: 'Glyphicons Halflings';
