@@ -11,13 +11,17 @@
             .col-sm-6
               = f.input :title, label: false, :input_html => {style: "width: 100%;"}
           .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Type
+            .col-sm-6
+              = f.select :book_type, Book::TYPES.each_with_index.map { |x,i| [x, i] }, {}, {class: 'chzn-select'}
+          .form-group
             %label.col-sm-2.control-label{:style => "text-align:left"} Synopsis
             .col-sm-9
               = f.input :synopsis, label: false, as: :summernote
           .form-group
             %label.col-sm-2.control-label{:style => "text-align:left"} Authers
             .col-sm-6
-              %input.tags{:type => "hidden", :value => @book.authers.join(', ')}/
+              = f.input :authers, label: false, type: 'hidden', input_html: {class: 'tags'}
           .form-group
             %label.col-sm-2.control-label{:style => "text-align:left"} Category
             .col-sm-6

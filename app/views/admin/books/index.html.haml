@@ -13,9 +13,9 @@
             %th
               %strong Title
             %th
-              %strong Author
+              %strong Author(s)
             %th
-              %strong Category
+              %strong Category(ies)
             %th
               %strong Type
             %th
@@ -24,7 +24,7 @@
           - @books.each do |book|
             %tr.edit-book.odd.gradeX{"data-href" => edit_admin_book_path(book)}
               %td= book.title
-              %td= book.try(:author)
-              %td= book.try(:category)
-              %td.center= book.try(:type)
+              %td= book.authers
+              %td= book.categories.map(&:title).join(', ')
+              %td.center= Book::TYPES[book.book_type]
               %td #{time_tag(book.created_at)}

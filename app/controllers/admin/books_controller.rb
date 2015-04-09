@@ -63,6 +63,6 @@ class Admin::BooksController < Admin::AdminController
     end
 
     def book_params
-      params.require(:book).permit(:title, {category_ids: []}, :synopsis, :duration, :target_audience, :author_bio)
+      params.require(:book).permit(:title, {category_ids: []}, :synopsis, :duration, :target_audience, :author_bio, :authers, :book_type)
     end
 end
