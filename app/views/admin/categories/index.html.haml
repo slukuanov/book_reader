@@ -4,13 +4,6 @@
   %h1=t '.title', :default => model_class.model_name.human.pluralize
 
 %p= link_to 'New Category', new_admin_category_path, :class => 'btn btn-primary'
-%form{:action => search_admin_categories_path, :method => "post", :id => 'search'}
-  %fieldset
-    %label{:for => 'id_search'}
-      Search by title:
-    %input{:type => "text", :name => "search_query", :id => 'id_search', :value => @search_query}
-  %button{:type => "submit", :class => 'btn'} Search
-  %a{:href => admin_categories_path, :class => 'btn'} Reset
 
 %table.table.table-striped
   %thead

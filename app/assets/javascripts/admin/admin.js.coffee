@@ -21,7 +21,9 @@ admin =
       $(this).summernote()
 
     $('#summernote3').summernote()
-    admin.getChapter($('#book-content .chapters-list li.active a.chapter').data("id"))
+    current_chapter_id = $('#book-content .chapters-list li.active a.chapter').data("id")
+    if current_chapter_id
+      admin.getChapter(current_chapter_id)
 
   getChapter: (chapter_id) ->
     $('#summernote3').code('')

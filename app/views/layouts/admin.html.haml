@@ -45,12 +45,16 @@
               %ul.cl-vnavigation
                 %li
                   %a{:href => admin_books_path}
-                    %i.fa.fa-files-o>
-                    Books
+                    %i.fa.fa-files-o
+                    %span Books
+                %li
+                  %a{:href => admin_categories_path}
+                    %i.fa.fa-list-alt
+                    %span Categories
                 %li
                   %a{:href => admin_users_path}
                     %i.fa.fa-users
-                    %span User
+                    %span Users
           .text-right.collapse-button{:style => "padding:7px 9px;"}
             %input.form-control.search{:placeholder => "Search...", :type => "text"}/
             %button#sidebar-collapse.btn.btn-default{:style => ""}
