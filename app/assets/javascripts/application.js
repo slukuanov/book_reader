@@ -13,10 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
-//= require chosen.jquery
 //= require_tree .
-
-$(function() {
-    $(".chzn-select").chosen();
-});
-

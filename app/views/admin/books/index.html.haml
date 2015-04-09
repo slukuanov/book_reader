@@ -1,28 +1,30 @@
-:ruby
-  model_class = Book
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
-
-%p= link_to 'New Book', new_admin_book_path, :class => 'btn btn-primary'
-%form{:action => search_admin_books_path, :method => "post", :id => 'search'}
-  %fieldset
-    %label{:for => 'id_search'}
-      Search by title:
-    %input{:type => "text", :name => "search_query", :id => 'id_search', :value => @search_query}
-  %button{:type => "submit", :class => 'btn'} Search
-  %a{:href => admin_books_path, :class => 'btn'} Reset
-
-%table.table.table-striped
-  %thead
-    %tr
-      %th ID
-      %th Title
-      %th Actions
-  %tbody
-    - @books.each do |book|
-      %tr{id: book.id}
-        %td= link_to book.id, admin_book_path(book)
-        %td= book.title
-        %td
-          = link_to 'Edit', edit_admin_book_path(book), :class => 'button-edit', :title => 'Edit'
-          = link_to 'Delete', admin_book_path(book), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'button-delete', :title => 'Delete'
+.page-head1
+  .text-center{:style => "text-align:left; padding:15px 0px; font-size:26px; width:100%;"}
+    .topsearch
+      %input.form-control{:placeholder => "Search...", :style => " border-radius:10px;", :type => "text"}/
+    %span{:style => "float:right;"}
+      = link_to 'Add New Book', new_admin_book_path, style: "width:180px;", class: 'btn btn-success btn-md'
+.block-flat{:style => "float:left;"}
+  .content{:style => "float:left; width:100%;"}
+    .table-responsive
+      %table#datatable.table.table-bordered.books-list
+        %thead
+          %tr
+            %th
+              %strong Title
+            %th
+              %strong Author
+            %th
+              %strong Category
+            %th
+              %strong Type
+            %th
+              %strong Date Added
+        %tbody
+          - @books.each do |book|
+            %tr.edit-book.odd.gradeX{"data-href" => edit_admin_book_path(book)}
+              %td= book.title
+              %td= book.try(:author)
+              %td= book.try(:category)
+              %td.center= book.try(:type)
+              %td #{time_tag(book.created_at)}

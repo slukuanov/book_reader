@@ -1,4 +1,6 @@
-- model_class = Book
-.page-header
-  %h1=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human
+.page-head1
+  .text-center{:style => "text-align:left; padding:15px 0px; font-size:26px; width:100%;"}
+    Add a New Book
+    %span{:style => "float:right;"}
+      %a.btn.btn-primary.btn-md{:href => "#", :style => "width:100px;"} Preview
 = render :partial => "form"

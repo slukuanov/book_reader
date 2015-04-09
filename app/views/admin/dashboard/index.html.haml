@@ -1,19 +1,59 @@
-%h1 Dashboard
-
-%table.table.table-condensed.table-striped
-  %thead
-    %tr
-      %th.shrink.model-name= t "model_name"
-      %th.shrink.last-used= t "last_used"
-      %th.records= t "records"
-  %tbody
-    - @models.each do |m|
-      %tr
-        - path = try("admin_#{m.model_name.plural}_path")
-        %td= link_to m.model_name.human(:count => 2), path
-        %td
-          - if !m.order('updated_at DESC').first.nil?
-            = time_ago_in_words m.order('updated_at DESC').first.try(:updated_at)
-          - else
-            N/A
-        %td= m.all.size
+.page-head1
+  .text-center{:style => "text-align:left; padding:15px 0px; font-size:26px; width:100%;"}
+    .topsearch
+      %input.form-control{:placeholder => "Search...", :style => " border-radius:10px;", :type => "text"}/
+    %span{:style => "float:right;"}
+      %a.btn.btn-success.btn-md{:href => "http://website-design-company.in/des6/eegg/addnewbook.html", :style => "width:180px;"} Add New Book
+.block-flat{:style => "float:left;"}
+  .content{:style => "float:left; width:100%;"}
+    .table-responsive
+      %table#datatable.table.table-bordered
+        %thead
+          %tr
+            %th
+              %strong Title
+            %th
+              %strong Author
+            %th
+              %strong Category
+            %th
+              %strong Type
+            %th
+              %strong Date Added
+        %tbody
+          %tr.odd.gradeX
+            %td Thinking First and Slow Sypnosis
+            %td Daniel Kahneman
+            %td Psychology
+            %td.center Book
+            %td 3/26/2015
+          %tr.even.gradeC
+            %td Thinking First and Slow Sypnosis 12
+            %td Daniel Kahneman
+            %td Psychology
+            %td.center Book
+            %td 3/26/2015
+          %tr.odd.gradeX
+            %td Thinking First and Slow Sypnosis
+            %td Daniel Kahneman
+            %td Psychology
+            %td.center Book
+            %td 3/26/2015
+          %tr.even.gradeC
+            %td Thinking First and Slow Sypnosis 12
+            %td Daniel Kahneman
+            %td Psychology
+            %td.center Book
+            %td 3/26/2015
+          %tr.odd.gradeX
+            %td Thinking First and Slow Sypnosis
+            %td Daniel Kahneman
+            %td Psychology
+            %td.center Book
+            %td 3/26/2015
+          %tr.even.gradeC
+            %td Thinking First and Slow Sypnosis 12
+            %td Daniel Kahneman
+            %td Psychology
+            %td.center Book
+            %td 3/26/2015

@@ -1,0 +1,19 @@
+%h1 Dashboard
+
+%table.table.table-condensed.table-striped
+  %thead
+    %tr
+      %th.shrink.model-name= t "model_name"
+      %th.shrink.last-used= t "last_used"
+      %th.records= t "records"
+  %tbody
+    - @models.each do |m|
+      %tr
+        - path = try("admin_#{m.model_name.plural}_path")
+        %td= link_to m.model_name.human(:count => 2), path
+        %td
+          - if !m.order('updated_at DESC').first.nil?
+            = time_ago_in_words m.order('updated_at DESC').first.try(:updated_at)
+          - else
+            N/A
+        %td= m.all.size

@@ -1,0 +1,34 @@
+- current_chapter = @book.chapters.last
+.row
+  .col-md-12
+    .block-flat
+      .header
+        %h3{:style => "text-align:left;"}
+          %strong Content
+      .content#book-content
+        .row
+          .col-md-3.chapters-list
+            %ul.cl-vnavigation{style: "list-style: none;"}
+              - @book.chapters.each do |chapter|
+                - klass = current_chapter == chapter ? 'active' : ''
+                %li{class: klass}
+                  %a.chapter{ href: "#", "data-id" => chapter.id }
+                    = chapter.title
+              %li
+                = link_to 'Add a New Chapter', generate_new_chapter_admin_chapters_path(chapter: {book_id: @book.id, title: 'New Empty Chapter'}), :method=> :post, style: "font-weight: 600;color: white;"
+          - unless current_chapter.blank?
+            .col-md-9.chapter-content
+              %form.form-horizontal.group-border-dashed#chapters-form{:action => "#", :style => "border-radius: 0px;"}
+                .form-group
+                  %label.col-sm-2.control-label{:style => "text-align:left"} Title
+                  .col-sm-12
+                    %input.form-control.book-id{type: "hidden", value: @book.id}/
+                    %input.form-control.chapter-id{type: "hidden", value: current_chapter.try(:id)}/
+                    %input.form-control.chapter-title{type: "text", value: current_chapter.try(:title)}/
+                .form-group
+                  .col-sm-12
+                    #summernote3
+                .form-group
+                  %label.col-sm-7.control-label  
+                  .col-sm-5{:style => "text-align:right;"}
+                    %input.btn.btn-success{:type => "submit", :value => "Update"}/

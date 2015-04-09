@@ -36,6 +36,14 @@ Rails.application.routes.draw do
         post :search
       end
     end
+
+    resources :chapters do
+      collection do
+        post :get_chapter
+        post :save_chapter
+        post :generate_new_chapter
+      end
+    end
     get '' => 'dashboard#index'
   end
 end

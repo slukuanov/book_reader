@@ -1,39 +1,62 @@
-:ruby
-  model_class = User
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
-
-%p
-%form{:action => search_admin_users_path, :method => "post", :id => 'search'}
-  %fieldset
-    %label{:for => 'id_search'}
-      Search by name or email:
-    %input{:type => "text", :name => "search_query", :id => 'id_search', :value => @search_query}
-  %button{:type => "submit", :class => 'btn'}
-    Search
-  %a{:href => admin_users_path, :class => 'btn'}
-    Reset
-
-%table.table.table-striped
-  %thead
-    %tr
-      %th= link_to 'ID', sort_by_id_admin_users_path
-      %th= link_to 'name', sort_by_first_name_admin_users_path
-      %th email
-      %th= link_to 'role', sort_by_role_admin_users_path
-      %th= link_to 'signed up', admin_users_path
-      %th= link_to 'last seen', sort_by_last_seen_admin_users_path
-      %th actions
-  %tbody
-    - @users.each do |user|
-      %tr{id: user.id}
-        %td= link_to user.id, admin_user_path(user)
-        %td= user.full_name
-        %td= user.email
-        %td= user.role
-        %td= time_tag(user.created_at)
-        %td= user.last_sign_in_at ? time_tag(user.last_sign_in_at) : "not logged yet"
-        %td
-          = link_to 'Edit', edit_admin_user_path(user), :class => 'button-edit', :title => 'Edit'
-          = link_to 'Delete', admin_user_path(user), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'button-delete', :title => 'Delete'
-          = link_to 'Login', become_admin_user_path(user), :class => 'button-login', :title => 'Login'
+.page-head1
+  .text-center{:style => "text-align:left; padding:15px 0px; font-size:26px; width:100%;"}
+    %h2{:style => "text-align:left; width:100%; float:left; margin-bottom:10px;"} User List
+    .topsearch
+      %input.form-control{:placeholder => "Search user...", :style => " border-radius:10px;", :type => "text"}/
+    %span{:style => "float:left;"}
+      %input.btn.btn-success.btn-md{:type => "submit", :value => "Search"}/
+.block-flat{:style => "float:left; width:100%;"}
+  .content{:style => "float:left; width:100%;"}
+    .table-responsive
+      %table#datatable.table.table-bordered
+        %thead
+          %tr
+            %th
+              %strong User Id
+            %th
+              %strong Date Register
+            %th
+              %strong Type
+            %th
+              %strong Expire Date
+            %th
+              %strong Action
+        %tbody
+          - @users.each do |user|
+            %tr.odd.gradeX
+              %td= user.full_name
+              %td= time_tag(user.created_at)
+              %td= user.try(:type)
+              %td.center Null
+              %td
+                %button.btn.btn-primary.btn-flat.md-trigger{"data-modal" => "form-primary-#{user.id}"} Edit
+                = link_to 'Delete', admin_user_path(user), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger', :title => 'Delete'
+                = link_to 'Login', become_admin_user_path(user), :data => { :confirm =>  "Are you sure? You will be login as user #{user.full_name}" }, :class => 'btn btn-success', :title => 'Login'
+                .md-modal.colored-header.custom-width.md-effect-9{:id => "form-primary-#{user.id}", :style => "height:600px; margin-top:30px; overflow:hidden;"}
+                  .md-content
+                    .modal-header
+                      %h3 Edit #{user.full_name}
+                      %button.close.md-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                    .modal-body.form{:style => "height:400px; overflow:auto;"}
+                      .content
+                        %form.form-horizontal.group-border-dashed{:action => "#", :style => "border-radius: 0px;"}
+                          .form-group
+                            %label.col-sm-3.control-label Type
+                            .col-sm-8
+                              %select.form-control
+                                %option 1
+                                %option 2
+                                %option 3
+                                %option 4
+                                %option 5
+                          .form-group
+                            %label.col-sm-3.control-label Expire Date
+                            .col-sm-8
+                              %input.form-control.datetime{:size => "16", :type => "text", :value => ""}/
+                          .form-group
+                            %label.col-sm-4.control-label  
+                            .col-sm-6
+                    .modal-footer
+                      %button.btn.btn-default.btn-flat.md-close{"data-dismiss" => "modal", :type => "button"} Cancel
+                      %button.btn.btn-primary.btn-flat.md-close{"data-dismiss" => "modal", :type => "button"} Update
+                .md-overlay

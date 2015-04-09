@@ -28,13 +28,14 @@ class Admin::BooksController < Admin::AdminController
     @book = Book.new(book_params)
 
     if @book.save
-      redirect_to [:admin, @book], notice: 'Book was successfully created.'
+      redirect_to edit_admin_book_path(@book), success: 'Book was successfully created.'
     else
       render action: 'new'
     end
   end
 
   def edit
+    @to_bottom = params[:to_bottom].present?
   end
 
   def show
@@ -42,7 +43,7 @@ class Admin::BooksController < Admin::AdminController
 
   def update
     if @book.update(book_params)
-      redirect_to admin_book_path(@book), success: 'Update success'
+      redirect_to edit_admin_book_path(@book), success: 'Update success'
     else
       render "edit"
     end
@@ -62,6 +63,6 @@ class Admin::BooksController < Admin::AdminController
     end
 
     def book_params
-      params.require(:book).permit(:title, {category_ids: []})
+      params.require(:book).permit(:title, {category_ids: []}, :synopsis, :duration, :target_audience, :author_bio)
     end
 end

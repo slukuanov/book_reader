@@ -1,15 +1,47 @@
-= simple_form_for [:admin, @book], :html => { :class => 'form-horizontal' } do |f|
-  .form-group
-    .col-sm-12
-      %b Title
-    .col-sm-12
-      = f.input :title, label: false, input_html: {class: 'col-sm-6'}
-  .form-group
-    .col-sm-12
-      %b Categories
-    .col-sm-12
-      = f.input :category_ids, label: false, collection: Category.all, input_html: {class: 'col-sm-6 chzn-select', multiple: true}
+.row
+  .col-md-12
+    .block-flat{:style => "float:left; width:100%;"}
+      .header
+        %h3{:style => "text-align:left;"}
+          %strong Basic Information
+      .content
+        = simple_form_for [:admin, @book], :html => { :class => 'form-horizontal group-border-dashed', :style => "border-radius: 0px;" } do |f|
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Title
+            .col-sm-6
+              = f.input :title, label: false, :input_html => {style: "width: 100%;"}
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Synopsis
+            .col-sm-9
+              = f.input :synopsis, label: false, as: :summernote
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Authers
+            .col-sm-6
+              %input.tags{:type => "hidden", :value => @book.authers.join(', ')}/
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Category
+            .col-sm-6
+              = f.select :category_ids, Category.all.map{|c| [c.title, c.id]}, {}, {class: 'chzn-select', multiple: true}
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Duration(mins)
+            .col-sm-1
+              = f.input :duration, label: false
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Target audience
+            .col-sm-9
+              = f.input :target_audience, label: false, as: :summernote
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Author Bio
+            .col-sm-9
+              = f.input :author_bio, label: false, as: :summernote
+          .form-group
+            %label.col-sm-7.control-label  
+            .col-sm-5{:style => "text-align:right;"}
+              %input.btn.btn-success{:type => "submit", :value => "Save"}/
 
-  .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = link_to 'Cancel', admin_books_path, :class => 'btn'
+- unless @book.new_record?
+  = render partial: "admin/chapters/shares/chapters", locals: { book: @book }
+
+%h2.text-center{:style => "text-align:left;"}
+  %span{:style => "float:right;"}
+    %a.btn.btn-primary.btn-md{:href => "#", :style => "width:100px;"} Preview
