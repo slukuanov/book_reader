@@ -15,7 +15,7 @@
                   %a.chapter{ href: "#", "data-id" => chapter.id }
                     = chapter.title
               %li
-                = link_to 'Add a New Chapter', generate_new_chapter_admin_chapters_path(chapter: {book_id: @book.id, title: 'New Empty Chapter'}), :method=> :post, style: "font-weight: 600;color: white;"
+                = link_to 'Add a New Chapter', generate_new_chapter_admin_chapters_path(chapter: {book_id: @book.id, title: 'New Empty Chapter'}), :method=> :post, class: 'add-empty-chapter', style: "font-weight: 600;color: white;"
           - unless current_chapter.blank?
             .col-md-9.chapter-content
               %form.form-horizontal.group-border-dashed#chapters-form{:action => "#", :style => "border-radius: 0px;"}
@@ -29,6 +29,8 @@
                   .col-sm-12
                     #summernote3
                 .form-group
-                  %label.col-sm-7.control-label  
-                  .col-sm-5{:style => "text-align:right;"}
+                  .col-sm-12{:style => "text-align:right;"}
+                    = link_to 'Destroy', '#', :class => 'btn btn-danger delete-chapter'
+                    %a.btn.btn-warning.update-and-create
+                      Update & Create New Chapter
                     %input.btn.btn-success{:type => "submit", :value => "Update"}/

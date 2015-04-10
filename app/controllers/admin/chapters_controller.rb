@@ -25,8 +25,25 @@ class Admin::ChaptersController < Admin::AdminController
     redirect_to edit_admin_book_path(@chapter.book, to_bottom: true), success: 'Update success'
   end
 
+  def destroy_chapter
+    @chapter = Chapter.find_by_id(params[:chapter][:id])
+    chapter_title = @chapter.title
+    @book = @chapter.book
+    if @chapter.destroy
+      render :json => { chapter_title: chapter_title,
+                        last_chapter_id: @book.chapters.last.id
+      }
+    else
+      render :json => { status: 403 }
+    end
+  end
+
   private
     def chapter_params
       params.require(:chapter).permit(:title, :content, :book_id, :id)
+    end
+
+    def new_chapter_params
+      params.require(:chapter_new).permit(:title, :content, :book_id)
     end
 end

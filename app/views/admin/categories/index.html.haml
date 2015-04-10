@@ -1,7 +1,15 @@
 :ruby
   model_class = Category
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+
+.page-head1
+  .text-center{:style => "text-align:left; padding:15px 0px; font-size:26px; width:100%;"}
+    %h2{:style => "text-align:left; width:100%; float:left; margin-bottom:10px;"}= model_class.model_name.human.pluralize
+    %form{:action => search_admin_categories_path, :method => "post", :id => 'search'}
+      .topsearch
+        %input.form-control{:placeholder => "Search categories by title...", :style => "border-radius:10px;", :type => "text", :name => "search_query", :id => 'id_search', :value => @search_query}/
+      %span{:style => "float:left;"}
+        %input.btn.btn-success.btn-md{:type => "submit", :value => "Search"}/
+        %a{:href => admin_categories_path, :class => 'btn btn-primary'} Reset
 
 %p= link_to 'New Category', new_admin_category_path, :class => 'btn btn-primary'
 

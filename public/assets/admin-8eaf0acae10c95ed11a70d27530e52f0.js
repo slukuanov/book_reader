@@ -7923,7 +7923,96 @@
       this.editBook();
       this.summernoteInit();
       this.selectChapter();
-      return this.saveChapter();
+      this.saveChapter();
+      this.saveAndGenerateNewChapter();
+      this.destroyChapter();
+      this.resetPassword();
+      return this.updateUserPlan();
+    },
+    updateUserPlan: function() {
+      return $(document).on('click', 'button.update-user', function(e) {
+        var data, form, user_id;
+        e.preventDefault();
+        $('html, body').css("cursor", "wait");
+        user_id = $(this).data('id');
+        form = $('#form-primary-edit-' + user_id);
+        data = {
+          tariff_type: form.find('.user-tariff-type').chosen().val(),
+          expire_date: form.find('.user-expire-date').val()
+        };
+        return $.ajax({
+          type: 'POST',
+          url: '/admin/users/update_tariff',
+          data: {
+            id: user_id,
+            user: data
+          },
+          dataType: "json",
+          success: function(data, textStatus, jqXHR) {
+            $('html, body').css("cursor", "auto");
+            noty({
+              text: 'Tariff for ' + data.user_email + ' was changed',
+              type: 'success'
+            });
+            return $('.md-modal.md-show .modal-header .md-close').click();
+          },
+          error: function(data, textStatus, jqXHR) {
+            noty({
+              text: 'Server Error',
+              type: 'error'
+            });
+            return $('html, body').css("cursor", "auto");
+          }
+        });
+      });
+    },
+    resetPassword: function() {
+      return $(document).on('click', '.reset-password', function(e) {
+        var data, form, pass, user_id;
+        e.preventDefault();
+        user_id = $(this).data('id');
+        form = $('#form-primary-reset-password-' + user_id);
+        pass = form.find('.new-password').val();
+        if (pass === '' || pass.length < 6) {
+          noty({
+            text: "Password can't be empty or less then 6 symbols",
+            type: 'error'
+          });
+          return false;
+        } else {
+          data = {
+            email: form.find('.user-email').val(),
+            password: pass,
+            password: pass
+          };
+          $('html, body').css("cursor", "wait");
+          return $.ajax({
+            type: 'POST',
+            url: '/admin/users/reset_password',
+            data: {
+              id: user_id,
+              user: data
+            },
+            dataType: "json",
+            success: function(data, textStatus, jqXHR) {
+              $('html, body').css("cursor", "auto");
+              noty({
+                text: 'Password for ' + data.user_email + ' was changed',
+                type: 'success'
+              });
+              form.find('.new-password').val('');
+              return $('.md-modal.md-show .modal-header .md-close').click();
+            },
+            error: function(data, textStatus, jqXHR) {
+              noty({
+                text: 'Server Error',
+                type: 'error'
+              });
+              return $('html, body').css("cursor", "auto");
+            }
+          });
+        }
+      });
     },
     editBook: function() {
       return $(document).on('click', '.books-list .edit-book', function(e) {
@@ -7960,10 +8049,15 @@
         },
         dataType: "json",
         success: function(data, textStatus, jqXHR) {
+          var chap;
           $('html, body').css("cursor", "auto");
           $('#summernote3').code(data.content);
           $('.chapter-content .chapter-title').val(data.title);
-          return $('.chapter-content .chapter-id').val(chapter_id);
+          $('.chapter-content .chapter-id').val(chapter_id);
+          chap = $('#book-content .chapters-list li a.chapter[data-id="' + chapter_id + '"]');
+          if (!chap.parent().hasClass('active')) {
+            return chap.parent().addClass('active');
+          }
         },
         error: function(data, textStatus, jqXHR) {
           return $('html, body').css("cursor", "auto");
@@ -7978,16 +8072,99 @@
         return admin.getChapter($(this).data("id"));
       });
     },
+    collectDataForChapter: function() {
+      return {
+        title: $('.chapter-content .chapter-title').val(),
+        content: $('#summernote3').code(),
+        book_id: $('.chapter-content .book-id').val(),
+        id: $('.chapter-content .chapter-id').val()
+      };
+    },
+    updateChapterTemplate: function(data) {
+      noty({
+        text: 'The chapter ' + data.title + ' was updated success',
+        type: 'success'
+      });
+      $('html, body').css("cursor", "auto");
+      $('#summernote3').code(data.content);
+      $('.chapter-content .chapter-title').val(data.title);
+      return $('#book-content .chapters-list li.active a.chapter').text(data.title);
+    },
+    destroyChapter: function() {
+      return $("#chapters-form").on("click", "a.delete-chapter", function(e) {
+        var chapter, isGood;
+        e.preventDefault();
+        isGood = confirm('Are you sure?');
+        if (isGood) {
+          chapter = $('#book-content .chapters-list li.active a.chapter');
+          $('html, body').css("cursor", "wait");
+          return $.ajax({
+            type: 'POST',
+            url: '/admin/chapters/destroy_chapter',
+            data: {
+              chapter: {
+                id: chapter.data("id")
+              }
+            },
+            dataType: "json",
+            success: function(data, textStatus, jqXHR) {
+              $('html, body').css("cursor", "auto");
+              noty({
+                text: 'The chapter ' + data.chapter_title + ' removed success',
+                type: 'success'
+              });
+              if (data.last_chapter_id != null) {
+                admin.getChapter(data.last_chapter_id);
+              } else {
+                $('.chapter-content').hide();
+              }
+              return chapter.parent().remove();
+            },
+            error: function(data, textStatus, jqXHR) {
+              noty({
+                text: 'The chapter ' + data.chapter_title + ' not removed success',
+                type: 'error'
+              });
+              return $('html, body').css("cursor", "auto");
+            }
+          });
+        }
+      });
+    },
+    saveAndGenerateNewChapter: function() {
+      return $("#chapters-form").on("click", "a.update-and-create", function(e) {
+        var data_for_current;
+        e.preventDefault();
+        data_for_current = admin.collectDataForChapter();
+        $('html, body').css("cursor", "wait");
+        return $.ajax({
+          type: 'POST',
+          url: '/admin/chapters/save_chapter',
+          data: {
+            chapter: data_for_current
+          },
+          dataType: "json",
+          success: function(data, textStatus, jqXHR) {
+            admin.updateChapterTemplate(data);
+            return setTimeout((function() {
+              return $('.add-empty-chapter').click();
+            }), 500);
+          },
+          error: function(data, textStatus, jqXHR) {
+            noty({
+              text: 'The chapter ' + data.title + ' not updated success',
+              type: 'error'
+            });
+            return $('html, body').css("cursor", "auto");
+          }
+        });
+      });
+    },
     saveChapter: function() {
       return $("#chapters-form").on("click", "input[type=\"submit\"]", function(e) {
         var data;
         e.preventDefault();
-        data = {
-          title: $('.chapter-content .chapter-title').val(),
-          content: $('#summernote3').code(),
-          book_id: $('.chapter-content .book-id').val(),
-          id: $('.chapter-content .chapter-id').val()
-        };
+        data = admin.collectDataForChapter();
         $('html, body').css("cursor", "wait");
         return $.ajax({
           type: 'POST',
@@ -7997,14 +8174,7 @@
           },
           dataType: "json",
           success: function(data, textStatus, jqXHR) {
-            noty({
-              text: 'The chapter ' + data.title + ' was updated success',
-              type: 'success'
-            });
-            $('html, body').css("cursor", "auto");
-            $('#summernote3').code(data.content);
-            $('.chapter-content .chapter-title').val(data.title);
-            return $('#book-content .chapters-list li.active a.chapter').text(data.title);
+            return admin.updateChapterTemplate(data);
           },
           error: function(data, textStatus, jqXHR) {
             noty({

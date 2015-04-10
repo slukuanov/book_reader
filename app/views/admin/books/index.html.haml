@@ -1,7 +1,12 @@
 .page-head1
   .text-center{:style => "text-align:left; padding:15px 0px; font-size:26px; width:100%;"}
-    .topsearch
-      %input.form-control{:placeholder => "Search...", :style => " border-radius:10px;", :type => "text"}/
+    %form{:action => search_admin_books_path, :method => "post", :id => 'search'}
+      .topsearch
+        %input.form-control{:placeholder => "Search books by title...", :style => "border-radius:10px;", :type => "text", :name => "search_query", :id => 'id_search', :value => @search_query}/
+      %span{:style => "float:left;"}
+        %input.btn.btn-success.btn-md{:type => "submit", :value => "Search"}/
+        %a{:href => admin_books_path, :class => 'btn btn-primary'} Reset
+
     %span{:style => "float:right;"}
       = link_to 'Add New Book', new_admin_book_path, style: "width:180px;", class: 'btn btn-success btn-md'
 .block-flat{:style => "float:left;"}

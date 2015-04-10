@@ -1,7 +1,8 @@
 require 'securerandom'
 
 class User < ActiveRecord::Base
-  ROLES = %w(unconfirmed confirmed admin venue_owner)
+  ROLES = %w(unconfirmed confirmed admin)
+  TARIFF_TYPES = %w(free paid)
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   validates_attachment_content_type :avatar, :content_type=>['image/jpeg', 'image/png', 'image/gif']
 
@@ -151,6 +152,10 @@ class User < ActiveRecord::Base
   def send_confirmation_email
     set_confirmation_token
     ConfirmationMailer.confirmation_email(self).deliver
+  end
+
+  def registered_by
+    self.provider.blank? ? 'Email' : self.provider
   end
 
   private

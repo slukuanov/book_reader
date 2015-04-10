@@ -19,6 +19,8 @@ Rails.application.routes.draw do
         get :sort_by_last_seen
         get :sort_by_role
         post :search
+        post :reset_password
+        post :update_tariff
       end
       member do
         get :become
@@ -42,6 +44,7 @@ Rails.application.routes.draw do
         post :get_chapter
         post :save_chapter
         post :generate_new_chapter
+        post :destroy_chapter
       end
     end
     get '' => 'dashboard#index'

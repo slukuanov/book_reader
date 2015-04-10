@@ -1,10 +1,12 @@
 .page-head1
   .text-center{:style => "text-align:left; padding:15px 0px; font-size:26px; width:100%;"}
     %h2{:style => "text-align:left; width:100%; float:left; margin-bottom:10px;"} User List
-    .topsearch
-      %input.form-control{:placeholder => "Search user...", :style => " border-radius:10px;", :type => "text"}/
-    %span{:style => "float:left;"}
-      %input.btn.btn-success.btn-md{:type => "submit", :value => "Search"}/
+    %form{:action => search_admin_users_path, :method => "post", :id => 'search'}
+      .topsearch
+        %input.form-control{:placeholder => "Search users by email or name...", :style => "border-radius:10px;", :type => "text", :name => "search_query", :id => 'id_search', :value => @search_query}/
+      %span{:style => "float:left;"}
+        %input.btn.btn-success.btn-md{:type => "submit", :value => "Search"}/
+        %a{:href => admin_users_path, :class => 'btn btn-primary'} Reset
 .block-flat{:style => "float:left; width:100%;"}
   .content{:style => "float:left; width:100%;"}
     .table-responsive
@@ -20,6 +22,10 @@
             %th
               %strong Expire Date
             %th
+              %strong Email
+            %th
+              %strong Reg. by
+            %th
               %strong Action
         %tbody
           - @users.each do |user|
@@ -28,35 +34,53 @@
               %td= time_tag(user.created_at)
               %td= user.try(:type)
               %td.center Null
+              %td= user.email
+              %td= user.registered_by
               %td
-                %button.btn.btn-primary.btn-flat.md-trigger{"data-modal" => "form-primary-#{user.id}"} Edit
+                %button.btn.btn-primary.btn-flat.md-trigger{"data-modal" => "form-primary-edit-#{user.id}"} Edit
                 = link_to 'Delete', admin_user_path(user), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-danger', :title => 'Delete'
                 = link_to 'Login', become_admin_user_path(user), :data => { :confirm =>  "Are you sure? You will be login as user #{user.full_name}" }, :class => 'btn btn-success', :title => 'Login'
-                .md-modal.colored-header.custom-width.md-effect-9{:id => "form-primary-#{user.id}", :style => "height:600px; margin-top:30px; overflow:hidden;"}
+                %button.btn.btn-primary.btn-flat.md-trigger{"data-modal" => "form-primary-reset-password-#{user.id}"} Reset Password
+
+                .md-modal.colored-header.custom-width.md-effect-9{:id => "form-primary-edit-#{user.id}", :style => "height:400px; margin-top:30px; overflow:hidden;"}
                   .md-content
                     .modal-header
                       %h3 Edit #{user.full_name}
                       %button.close.md-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-                    .modal-body.form{:style => "height:400px; overflow:auto;"}
+                    .modal-body.form{:style => "height:200px; overflow:auto;"}
                       .content
                         %form.form-horizontal.group-border-dashed{:action => "#", :style => "border-radius: 0px;"}
                           .form-group
-                            %label.col-sm-3.control-label Type
-                            .col-sm-8
-                              %select.form-control
-                                %option 1
-                                %option 2
-                                %option 3
-                                %option 4
-                                %option 5
+                            %label.col-sm-3.control-label{style: "padding-top: 0;"} Type
+                            .col-sm-3
+                              = select_tag "tariff_type", options_for_select(User::TARIFF_TYPES.each_with_index.map { |x,i| [x, i] }, user.tariff_type), {class: 'chzn-select user-tariff-type'}
                           .form-group
                             %label.col-sm-3.control-label Expire Date
                             .col-sm-8
-                              %input.form-control.datetime{:size => "16", :type => "text", :value => ""}/
-                          .form-group
-                            %label.col-sm-4.control-label  
-                            .col-sm-6
+                              %input.form-control.datetime.user-expire-date{:size => "16", :type => "text", :value => user.expire_date}/
                     .modal-footer
                       %button.btn.btn-default.btn-flat.md-close{"data-dismiss" => "modal", :type => "button"} Cancel
-                      %button.btn.btn-primary.btn-flat.md-close{"data-dismiss" => "modal", :type => "button"} Update
+                      %button.btn.btn-primary.btn-flat.update-user{"data-dismiss" => "modal", "data-id" => user.id, :type => "button"} Update
+                .md-overlay
+
+                .md-modal.colored-header.custom-width.md-effect-9{:id => "form-primary-reset-password-#{user.id}", :style => "height:400px; margin-top:30px; overflow:hidden;"}
+                  .md-content
+                    .modal-header
+                      %h3 Reset password for #{user.full_name}
+                      %button.close.md-close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                    .modal-body.form{:style => "height:200px; overflow:auto; text-align: center;"}
+                      .content
+                        %form.form-horizontal.group-border-dashed{:action => "#", :style => "border-radius: 0px;"}
+                          .row
+                            %span Reset password for #{user.email} ?
+                          .row
+                            .form-group
+                              %label.col-sm-4.control-label New password
+                              .col-sm-7
+                                %input.user-id{type: 'hidden', value: user.id}
+                                %input.user-email{type: 'hidden', value: user.email}
+                                %input.form-control.new-password{:size => "16", :type => "text", :value => ""}/
+                    .modal-footer
+                      %button.btn.btn-default.btn-flat.md-close{"data-dismiss" => "modal", :type => "button"} Cancel
+                      %button.btn.btn-primary.btn-flat.reset-password{"data-dismiss" => "modal", "data-id" => user.id, :type => "button"} Reset
                 .md-overlay
