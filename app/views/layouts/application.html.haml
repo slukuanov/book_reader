@@ -27,12 +27,9 @@
                         Genres
                         %span.caret
                       %ul.dropdown-menu{:role => "menu"}
-                        %li
-                          %a{:href => "#"} Business and Management
-                        %li
-                          %a{:href => "#"} Marketing
-                        %li
-                          %a{:href => "#"} History
+                        - Category.all.each do |category|
+                          %li
+                            = link_to category.title, category_path(category)
                   %ul.nav.navbar-nav.navbar-right
                     %li
                       %form.navbar-form{:role => "search"}
@@ -62,6 +59,8 @@
 -#    %div
 -#      = value
 = yield
+
+= render partial: "shares/footer"
 
 #login-modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog

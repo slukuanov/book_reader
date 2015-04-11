@@ -1,0 +1,60 @@
+%input#new_version_image{type: 'hidden', value: 0, name: 'new_version_image'}
+.control-group
+  %label
+    Image
+  .controls
+    .fileupload{class: (object.send("#{attribute}?") ? 'fileupload-exists' : 'fileupload-new'), data: {provides:"fileupload"}}
+      %div#cont_preview{style: "overflow:hidden; width: 220px; height: 220px"}
+        - if object.send("#{attribute}?")
+          = image_tag object.send("#{attribute}").send("#{thumbnail}"), id: "preview"
+          :css
+            .thumb-view-b {
+              display: none;
+            }
+        - else
+          :css
+            #cont_preview {
+              display: none;
+            }
+      .thumb-view-b
+        .view-container
+          %p{style: "float: left;"}
+            Position and resize your image
+      %div
+        %span.btn.btn-file
+          = f.input :crop_x, :as => :hidden
+          = f.input :crop_y, :as => :hidden
+          - unless object.send("#{attribute}?")
+            :css
+              .view-container {
+                display: none;
+              }
+
+          .file-upload-container
+            .file-upload-override-button.left
+              = t('image.choise')
+              = f.file_field attribute, class: 'file-upload-button'
+            .file-upload-filename.left#file-upload-filename
+            .both
+          = f.input :crop_w, :as => :hidden
+          = f.input :crop_h, :as => :hidden
+          = f.input :temp_image, :as => :hidden
+        %script#template-upload{:type => "text/x-tmpl"}
+          .upload
+            :plain
+              {%=o.name%}
+            .progress
+              .bar{style: "width: 0%"}
+
+- if object.send("#{attribute}?")
+  = f.input remove, as: :boolean
+:css
+  img#preview {max-width: none}
+  .jcrop-holder{margin: 0 auto;}
+- content_for :javascript do
+  :javascript
+    $(document).ready(function(){
+      $("#file-upload-button").change(function () {
+        var fileName = $(this).val().replace("C:\akepath", "");
+      });
+    });

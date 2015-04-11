@@ -1,0 +1,24 @@
+.content
+  .container#books-list
+    - if @category.present?
+      %h3{style: 'text-align: center; padding-bottom: 15px;'}= @category.title
+    .row
+      %h2{style: 'text-align: center; padding-bottom: 15px;'}= 'For this category there are no books' if @books.blank?
+      - @books.each do |book|
+        .col-sm-3.col-md-3
+          .thumbnail
+            = image_tag(book.get_thumb_listing, class: 'img-responsive')
+            - title = book.title? ? book.title.split.map(&:capitalize).join(' ') : 'N/A'
+            - auther = book.authers? ? book.authers.split(',')[0] : 'N/A'
+            .caption.text-center
+              %h4.title= title
+              %p.auther= auther
+              %p.text-center
+                = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
+            .overlay.text-left
+              %h4= title
+              %p
+                %i= auther
+              %p.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
+              %p.text-center
+                = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'

@@ -1,0 +1,65 @@
+.content#book-show
+  .container
+    .mainwrapper_sub
+      .row
+        .col-md-6.border-right
+          .row
+            .col-md-12
+              = image_tag(@book.get_thumb_view, class: 'img-responsive')
+            .col-md-12
+              - unless @book.synopsis.blank?
+                %br/
+                %h4 What About
+                %p.gray_text
+                  = @book.synopsis.try(:html_safe)
+              - unless @book.author_bio.blank?
+                %br/
+                %h4 Who wrote the book?
+                %p.gray_text
+                  = @book.author_bio.try(:html_safe)
+        .col-md-5.col-md-offset-1
+          %h3.text-uppercase
+            = @book.title
+          %br/
+          %p.gray_text
+            %span.glyphicon.glyphicon-c.glyphicon-user.inline{"aria-hidden" => "true"}
+            - auther = @book.authers? ? @book.authers.split(',')[0] : 'N/A'
+            %span.text.inline= auther
+          %br/
+          %p.gray_text
+            %span.glyphicon.glyphicon-c.glyphicon-time.inline{"aria-hidden" => "true"}
+              
+            %span.text.inline #{@book.duration || 'N/A'} min
+          %br/
+          %p.gray_text
+            -#%span
+            -#  %img.inline{:alt => "", :src => "images/Psychology.png"}/
+            %span.text.inline
+              = @book.categories.map(&:title).join(', ')
+          %br/
+          %h4.normal_weight Follow Us
+          %br/
+          %ul.follow_us
+            %li.inline
+              %a.glyphicon-c.gray_text{:href => "#"}
+                %i.fa.fa-linkedin
+            %li.inline
+              %a.glyphicon-c.gray_text{:href => "#"}
+                %i.fa.fa-pinterest-p
+            %li.inline
+              %a.glyphicon-c.gray_text{:href => "#"}
+                %i.fa.fa-twitter
+            %li.inline
+              %a.glyphicon-c.gray_text{:href => "#"}
+                %i.fa.fa-facebook
+            %li.inline
+              %a.glyphicon-c.gray_text{:href => "#"}
+                %i.fa.fa-google-plus
+          %br/
+          - if user_signed_in?
+            = link_to 'Read', read_book_reader_path(@book), class: 'btn-lg btn btn-primary text-uppercase'
+          - else
+            = link_to 'Sign Up', '#', class: 'btn-lg btn btn-primary text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"
+          %button.btn.btn-default.text-uppercase.btn-lg{:type => "button"}
+            Send to
+            %span.orange_text kindle

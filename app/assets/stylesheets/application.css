@@ -12,6 +12,7 @@
  *= require font-awesome
  *= require style
  *= require layouts
+ *= require books
 */
 @font-face {
     font-family: 'Glyphicons Halflings';

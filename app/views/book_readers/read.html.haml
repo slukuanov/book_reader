@@ -1,0 +1,20 @@
+- chapters = @book.chapters
+- current_chapter_id = @user_book.current_chapter_id
+.menu-panel
+  %ul#menu-toc.menu-toc
+    - chapters.each do |chapter|
+      - klass_active = current_chapter_id == chapter.id ? 'menu-toc-current' : ''
+      %li{class: klass_active, data: {chapter_id: chapter.id, user_book_id: @user_book.id}}
+        %a{href: "#item#{chapter.id}", data: {chapter_id: chapter.id}}= chapter.title
+.bb-custom-wrapper
+  #bb-bookblock.bb-bookblock
+    - chapters.each do |chapter|
+      .bb-item{id: "#item#{chapter.id}", data: {chapter_id: chapter.id, user_book_id: @user_book.id}}
+        .content
+          .scroller
+            %h2= chapter.title
+            = chapter.content.try(:html_safe)
+  %nav
+    %span#bb-nav-prev ←
+    %span#bb-nav-next →
+  %span#tblcontents.menu-button Table of Contents

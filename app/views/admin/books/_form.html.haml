@@ -38,6 +38,13 @@
             %label.col-sm-2.control-label{:style => "text-align:left"} Author Bio
             .col-sm-9
               = f.input :author_bio, label: false, as: :summernote
+
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} Image
+            .col-sm-9
+              = image_tag(@book.get_thumb_listing)
+              = f.input :image, label: false
+
           .form-group
             %label.col-sm-7.control-label  
             .col-sm-5{:style => "text-align:right;"}

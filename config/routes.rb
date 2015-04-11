@@ -11,6 +11,17 @@ Rails.application.routes.draw do
   delete '/user/fb_account_delete', to: 'users/users#remove_fb_account', as: 'remove_fb_account'
   get '/account/confirm/:confirmation_token', to: 'users/confirmation#confirm_user', as: 'confirmation'
 
+  resources :books
+  resources :categories
+  resources :book_readers do
+    member do
+      get :read
+    end
+    collection do
+      post :update_current_chapter
+    end
+  end
+
   namespace :admin do
     resources :users, except: [:new, :create] do
       collection do

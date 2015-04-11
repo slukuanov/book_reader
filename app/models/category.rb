@@ -4,4 +4,8 @@ class Category < ActiveRecord::Base
   scope :sort_by_id, -> { order('id') }
   scope :search, lambda{|query| where('title ILIKE :query ', {query: "%#{query}%"}) }
 
+  extend FriendlyId
+  friendly_id :title
+
+  validates :title, :presence => true, :uniqueness => true
 end

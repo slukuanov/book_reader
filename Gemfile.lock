@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/jnicklas/carrierwave.git
+  revision: 12ec8017360a3a20696f6ec9e807a971e00d04c1
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
+GIT
   remote: git://github.com/manzhikov/awesome_nested_fields.git
   revision: a0f13f9f3ad6be22313f008a238ca30a753492a2
   specs:
@@ -27,9 +37,38 @@ GIT
       cocaine (~> 0.5.5)
       mime-types
 
+GIT
+  remote: https://github.com/fog/fog.git
+  revision: dc4929dfb8f9a35ca3da292cfbb8b69add548a6d
+  specs:
+    fog (1.29.0)
+      fog-atmos
+      fog-aws (~> 0.0)
+      fog-brightbox (~> 0.4)
+      fog-core (~> 1.27, >= 1.27.4)
+      fog-ecloud
+      fog-google (>= 0.0.2)
+      fog-json
+      fog-local
+      fog-powerdns (>= 0.1.1)
+      fog-profitbricks
+      fog-radosgw (>= 0.0.2)
+      fog-riakcs
+      fog-sakuracloud (>= 0.0.4)
+      fog-serverlove
+      fog-softlayer
+      fog-storm_on_demand
+      fog-terremark
+      fog-vmfusion
+      fog-voxel
+      fog-xml (~> 0.1.1)
+      ipaddress (~> 0.5)
+      nokogiri (~> 1.5, >= 1.5.11)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    CFPropertyList (2.3.1)
     actionmailer (4.2.1)
       actionpack (= 4.2.1)
       actionview (= 4.2.1)
@@ -95,9 +134,84 @@ GEM
     currencies (0.4.2)
     debug_inspector (0.0.2)
     erubis (2.7.0)
+    excon (0.45.1)
     execjs (2.4.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    fission (0.5.0)
+      CFPropertyList (~> 2.2)
+    fog-atmos (0.1.0)
+      fog-core
+      fog-xml
+    fog-aws (0.1.2)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-brightbox (0.7.1)
+      fog-core (~> 1.22)
+      fog-json
+      inflecto (~> 0.0.2)
+    fog-core (1.30.0)
+      builder
+      excon (~> 0.45)
+      formatador (~> 0.2)
+      mime-types
+      net-scp (~> 1.1)
+      net-ssh (>= 2.1.3)
+    fog-ecloud (0.1.1)
+      fog-core
+      fog-xml
+    fog-google (0.0.2)
+      fog-core
+      fog-xml
+    fog-json (1.0.1)
+      fog-core (~> 1.0)
+      multi_json (~> 1.0)
+    fog-local (0.2.1)
+      fog-core (~> 1.27)
+    fog-powerdns (0.1.1)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+    fog-profitbricks (0.0.2)
+      fog-core
+      fog-xml
+      nokogiri
+    fog-radosgw (0.0.4)
+      fog-core (>= 1.21.0)
+      fog-json
+      fog-xml (>= 0.0.1)
+    fog-riakcs (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
+    fog-sakuracloud (1.0.1)
+      fog-core
+      fog-json
+    fog-serverlove (0.1.2)
+      fog-core
+      fog-json
+    fog-softlayer (0.4.3)
+      fog-core
+      fog-json
+    fog-storm_on_demand (0.1.1)
+      fog-core
+      fog-json
+    fog-terremark (0.1.0)
+      fog-core
+      fog-xml
+    fog-vmfusion (0.1.0)
+      fission
+      fog-core
+    fog-voxel (0.1.0)
+      fog-core
+      fog-xml
+    fog-xml (0.1.2)
+      fog-core
+      nokogiri (~> 1.5, >= 1.5.11)
+    formatador (0.2.5)
+    friendly_id (4.0.10)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -117,9 +231,12 @@ GEM
       ruby_parser (~> 3.5)
     i18n (0.7.0)
     i18n_data (0.6.3)
+    inflecto (0.0.2)
+    ipaddress (0.8.0)
     jbuilder (2.2.12)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jcrop-rails-v2 (0.9.12.3)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -137,11 +254,15 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
+    mini_magick (4.2.1)
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     noty-rails (2.3.4)
@@ -264,13 +385,18 @@ DEPENDENCIES
   awesome_nested_fields!
   byebug
   cancan
+  carrierwave!
   coffee-rails (~> 4.1.0)
   country_select
   devise!
+  fog!
+  friendly_id (~> 4.0.0.beta8)
   haml-rails
   jbuilder (~> 2.0)
+  jcrop-rails-v2
   jquery-rails
   less-rails
+  mini_magick
   noty-rails
   omniauth
   omniauth-facebook

@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   scope :sort_by_role, -> { order('role') }
   scope :search, lambda{|query| where('last_name ILIKE :query OR email ILIKE :query OR first_name ILIKE :query ', {query: "%#{query}%"}) }
 
+  has_and_belongs_to_many :books, -> { uniq }
+
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
 
@@ -57,6 +59,10 @@ class User < ActiveRecord::Base
     else
       'frontend/default/default_user_img_23.png'
     end
+  end
+
+  def user_book book_id
+    BooksUser.where(book_id: book_id, user_id: id)[0]
   end
 
   def self.current

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410115115) do
+ActiveRecord::Schema.define(version: 20150411145836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20150410115115) do
     t.text     "target_audience"
     t.text     "author_bio"
     t.integer  "book_type",       default: 0
+    t.string   "image"
+    t.string   "crop_x"
+    t.string   "crop_y"
+    t.string   "crop_w"
+    t.string   "crop_h"
+    t.string   "temp_image"
   end
 
   create_table "books_categories", force: :cascade do |t|
@@ -33,6 +39,14 @@ ActiveRecord::Schema.define(version: 20150410115115) do
     t.integer  "book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "books_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "current_chapter_id"
   end
 
   create_table "categories", force: :cascade do |t|

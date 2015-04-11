@@ -1,7 +1,7 @@
 //= require jquery_ujs
 //= require chosen.jquery
 //= require summernote
-//= require_tree ./admin
+//= require ./admin/admin
 //= require noty/jquery.noty
 //= require noty/layouts/topCenter
 //= require noty/themes/default

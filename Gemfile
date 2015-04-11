@@ -23,13 +23,21 @@ gem 'remotipart', '~> 1.2'
 
 gem 'less-rails'
 gem 'devise', github: 'plataformatec/devise'
-gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'cancan'
 gem 'summernote-rails'
 gem 'noty-rails'
+
+# File uploads
+gem 'carrierwave', :git => 'git://github.com/jnicklas/carrierwave.git'
+gem 'fog', :git => 'https://github.com/fog/fog.git'
+gem 'mini_magick'
+gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
+gem 'jcrop-rails-v2'
+
+gem 'friendly_id', "~> 4.0.0.beta8"
 
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'
