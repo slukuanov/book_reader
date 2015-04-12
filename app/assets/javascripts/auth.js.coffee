@@ -1,5 +1,5 @@
 $ ->
-  $(document).on 'submit', '#registration-via-email-modal form, #login-modal form', (e) ->
+  $(document).on 'submit', 'form#new_user', (e) ->
     e.preventDefault()
     $('html, body').css("cursor", "wait");
     that = $(this)

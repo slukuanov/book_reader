@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   scope :search, lambda{|query| where('last_name ILIKE :query OR email ILIKE :query OR first_name ILIKE :query ', {query: "%#{query}%"}) }
 
   has_and_belongs_to_many :books, -> { uniq }
+  has_many :highlights
 
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me

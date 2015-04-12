@@ -24,9 +24,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     if resource.save
       sign_up(resource_name, resource)
-      render json: true
+      respond_to do |format|
+        format.html { render "devise/registrations/new" }
+        format.json { true }
+      end
+      # render json: true
     else
-      render json: resource.errors, status: 403
+      respond_to do |format|
+        format.html { render "devise/registrations/new" }
+        format.json { render json: resource.errors, status: 403 }
+      end
     end
   end
 

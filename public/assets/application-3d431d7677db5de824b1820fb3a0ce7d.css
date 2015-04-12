@@ -533,6 +533,46 @@ a.already {
 #books-list .thumbnail .overlay .text-center {
   margin: 0 0 0;
 }
+#hightlight-list .hightlight {
+  background: white;
+  margin-bottom: 40px;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+#hightlight-list .hightlight blockquote {
+  border-left-color: #994e33;
+  padding: 5px 10px;
+}
+#hightlight-list .hightlight blockquote a {
+  color: #3a3a3a;
+}
+#hightlight-list .hightlight .fa {
+  font-size: 35px;
+  color: #77B684;
+}
+#hightlight-list .hightlight .fa-remove {
+  color: #FC9494;
+}
+#hightlight-list .hightlight .comments {
+  list-style-type: square;
+  font-style: italic;
+}
+#hightlight-list .hightlight button.close {
+  font-size: 31px !important;
+}
+#hightlight-list .popModal {
+  position: absolute;
+  z-index: 3333;
+  background: #cbcbcb;
+  padding: 0 10px 0 10px !important;
+  border-radius: 5px;
+}
+#hightlight-list .popModal .close {
+  color: #000000;
+}
+#hightlight-list .popModal .popModal_content {
+  height: 113px;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.

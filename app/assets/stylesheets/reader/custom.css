@@ -117,11 +117,14 @@ a:hover {
 
 .menu-toc li a:hover,
 .menu-toc li.menu-toc-current a{
-    background: #000;
+    background: #d7d7d7;
 }
 
 .menu-panel div {
-    margin-top: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    background: rgb(231, 227, 219);
+    padding: 10px;
 }
 
 .menu-panel div a {
@@ -141,6 +144,15 @@ a:hover {
     background: inherit;
     color: #fff;
     text-shadow: none;
+}
+
+.menu-panel .manage {
+    min-height: 45px;
+    font-size: 25px;
+}
+
+.menu-panel .manage a {
+    float: left;
 }
 
 .bb-custom-wrapper nav {
@@ -291,3 +303,17 @@ a:hover {
         font-size: 75%;
     }
 }
+
+.pre-highlight { background-color: #d3d3d3 !important;}
+.highlight { background-color: yellow; }
+
+.popModal {
+    padding: 8px;
+}
+.popModal .popModal_content {
+    margin: 0 !important;
+}
+
+/*.popModal .popModal_content a{*/
+    /*margin-right: 6px;*/
+/*}*/

@@ -44,11 +44,9 @@
                           %span.caret
                         %ul.dropdown-menu{:role => "menu"}
                           %li
-                            %a{:href => "#"} Action
+                            = link_to 'Favorite Books', user_favorite_list_path
                           %li
-                            %a{:href => "#"} Another action
-                          %li
-                            %a{:href => "#"} Something else here
+                            = link_to 'Highlights', user_highlight_list_path
                           - if user_signed_in? && current_user.role == 'admin'
                             %li= link_to 'Administration', admin_path
                           %li.divider

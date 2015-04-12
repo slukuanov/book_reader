@@ -38,6 +38,7 @@ gem 'paperclip', :git => 'git://github.com/thoughtbot/paperclip.git'
 gem 'jcrop-rails-v2'
 
 gem 'friendly_id', "~> 4.0.0.beta8"
+gem 'acts_as_commentable'
 
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'unicorn'

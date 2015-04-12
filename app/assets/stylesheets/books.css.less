@@ -25,3 +25,47 @@
     }
   }
 }
+
+#hightlight-list {
+  .hightlight {
+    background: white;
+    margin-bottom: 40px;
+    padding-top: 10px;
+    padding-left: 15px;
+    blockquote {
+      border-left-color: rgb(153, 78, 51);
+      padding: 5px 10px;
+      a {
+        color: #3a3a3a;
+      }
+    }
+    .fa {
+      font-size: 35px;
+      color: #77B684;
+    }
+    .fa-remove {
+      color: #FC9494;
+    }
+    .comments {
+      list-style-type: square;
+      font-style: italic;
+    }
+    button.close {
+      font-size: 31px !important;
+    }
+  }
+
+  .popModal {
+    position: absolute;
+    z-index: 3333;
+    background: rgb(203, 203, 203);
+    padding: 0 10px 0 10px !important;
+    border-radius: 5px;
+    .close {
+      color: #000000;
+    }
+    .popModal_content {
+      height: 113px;
+    }
+  }
+}

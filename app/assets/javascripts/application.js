@@ -13,4 +13,48 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
-//= require_tree .
+//= require auth.js
+//= require ./reader/popModal.min.js
+
+$(document).on('click', '.add-comment', function(e) {
+    var that;
+    e.preventDefault();
+    that = $(this);
+    return that.popModal({
+        html : $('#comment-form').html(),
+        placement : 'bottomLeft',
+        showCloseBut : true,
+        onDocumentClickClose : true,
+        onDocumentClickClosePrevent : '',
+        overflowContent : true,
+        inline : true,
+        beforeLoadingContent : 'Please, wait...',
+        onOkBut : function() {
+            var comment, id;
+            id = that.data('id');
+            comment = $('.popModal_content .comment-area').val();
+            if (comment != '') {
+                $.ajax({
+                    type: 'POST',
+                    url: '/books/add_comment_to_highlighter',
+                    data: {
+                        id: id,
+                        comment: {
+                            comment: comment,
+                            title: 'empty'
+                        }
+                    },
+                    dataType: "json",
+                    success: function (data, textStatus, jqXHR) {
+                        $(that).parents('.hightlight').find('ul.comments').append('<li>' + comment + '</li>');
+                    },
+                    error: function (data, textStatus, jqXHR) {
+                    }
+                });
+            }
+        },
+        onCancelBut : function() {},
+        onLoad : function() {},
+        onClose : function() {}
+    });
+});

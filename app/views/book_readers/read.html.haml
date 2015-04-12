@@ -1,6 +1,14 @@
 - chapters = @book.chapters
 - current_chapter_id = @user_book.current_chapter_id
 .menu-panel
+  .manage
+    - kls = @user_book.favorite ? ['remove-from-favorite', 'fa-star-o', 'DEL FROM FAVORITE'] : ['add-to-favorite', 'fa-star', 'ADD TO FAVORITE']
+    %a.remove-from-favorite.favorite-manage{class: kls[0], href: "#", data: {user_book_id: @user_book.id}}
+      %i.fa{class: kls[1]}
+      %span= kls[2]
+    %a{:href => category_path(@book.categories.first)}
+      %i.fa.fa-sign-out
+      %span EXIT
   %ul#menu-toc.menu-toc
     - chapters.each do |chapter|
       - klass_active = current_chapter_id == chapter.id ? 'menu-toc-current' : ''
@@ -12,7 +20,7 @@
       .bb-item{id: "#item#{chapter.id}", data: {chapter_id: chapter.id, user_book_id: @user_book.id}}
         .content
           .scroller
-            %h2= chapter.title
+            %h2.chapter-title= chapter.title
             = chapter.content.try(:html_safe)
   %nav
     %span#bb-nav-prev ←

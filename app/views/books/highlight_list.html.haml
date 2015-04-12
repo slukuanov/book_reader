@@ -1,0 +1,27 @@
+#comment-form.hide
+  %textarea.comment-area{style: "width: 280px;height: 70px;"}
+  %btn.btn-success{'data-popmodal-but' => "ok", style: "cursor: pointer; padding: 4px 20px;float: right;border-radius: 3px;  margin-bottom: 10px;"} Add
+.content
+  .container
+    .row#hightlight-list
+      - unless @highlightes.present?
+        %h2{style: 'text-align: center; padding-bottom: 15px;'} You don't have any highlights
+      - else
+        %h2{style: 'text-align: center; padding-bottom: 15px;'} Your highlights:
+        - @highlightes.each do |highlight|
+          .row.hightlight
+            .col-sm-1
+              %a{:href => delete_highlight_path(highlight), :data => { :confirm =>  'Are you sure?' }}
+                %i.fa.fa-remove
+              %a.add-comment{:href => "#", data: {id: highlight.id}}
+                %i.fa.fa-comment
+            .col-sm-11
+              - book = highlight.books_user.book
+              %blockquote
+                %i= link_to "#{highlight.content}", read_book_reader_path(book, chapter_id: highlight.chapter_id)
+              %h4
+                = link_to "#{book.title}", book_path(book)
+              %p
+                %ul.comments
+                  - highlight.comments.each do |comment|
+                    %li= comment.comment
