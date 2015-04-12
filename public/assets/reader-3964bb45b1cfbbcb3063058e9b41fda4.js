@@ -10937,7 +10937,7 @@ return jQuery;
           data: {
             books_user: {
               id: user_book_id,
-              favorite: is_fav
+              favorite: is_fav ? 1 : 0
             }
           },
           dataType: "json",

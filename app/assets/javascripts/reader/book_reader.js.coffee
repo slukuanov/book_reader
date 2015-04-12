@@ -98,7 +98,7 @@ reader =
         data:
           books_user:
             id: user_book_id
-            favorite: is_fav
+            favorite: if is_fav then 1 else 0
         dataType: "json"
         success: (data, textStatus, jqXHR) ->
           $('html, body').css("cursor", "auto")
