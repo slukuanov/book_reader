@@ -4,14 +4,18 @@ class BookReadersController < ApplicationController
   layout "reader"
 
   def read
-    @user_book = current_user.user_book(@book.id)
-    if @user_book.blank?
-      @user_book = BooksUser.create(book_id: @book.id, user_id: current_user.id, current_chapter_id: @book.chapters.first.id)
-    end
+    unless current_user.has_free_tariff
+      @user_book = current_user.user_book(@book.id)
+      if @user_book.blank?
+        @user_book = BooksUser.create(book_id: @book.id, user_id: current_user.id, current_chapter_id: @book.chapters.first.id)
+      end
 
-    if params[:chapter_id].present?
-      @user_book.current_chapter_id = params[:chapter_id]
-      @user_book.save
+      if params[:chapter_id].present?
+        @user_book.current_chapter_id = params[:chapter_id]
+        @user_book.save
+      end
+    else
+      redirect_to root_path
     end
   end
 

@@ -31,9 +31,9 @@
           - @users.each do |user|
             %tr.odd.gradeX
               %td= user.full_name
-              %td= time_tag(user.created_at)
-              %td= user.try(:type)
-              %td.center Null
+              %td= user.created_at.strftime("%F %T")
+              %td= User::TARIFF_TYPES[user.tariff_type].capitalize
+              %td.center= user.expire_date
               %td= user.email
               %td= user.registered_by
               %td

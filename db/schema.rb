@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412023813) do
+ActiveRecord::Schema.define(version: 20150415193621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.text     "synopsis"
     t.text     "authers"
     t.integer  "duration"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20150412023813) do
     t.string   "crop_w"
     t.string   "crop_h"
     t.string   "temp_image"
+    t.boolean  "on_front_page",   default: false
+    t.boolean  "is_free",         default: false
   end
 
   create_table "books_categories", force: :cascade do |t|

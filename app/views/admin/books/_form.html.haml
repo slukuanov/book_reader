@@ -38,7 +38,14 @@
             %label.col-sm-2.control-label{:style => "text-align:left"} Author Bio
             .col-sm-9
               = f.input :author_bio, label: false, as: :summernote
-
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} It will be on Front Page?
+            .col-sm-9
+              = f.input :on_front_page, label: false
+          .form-group
+            %label.col-sm-2.control-label{:style => "text-align:left"} It will be as Free Book?
+            .col-sm-9
+              = f.input :is_free, label: false
           .form-group
             %label.col-sm-2.control-label{:style => "text-align:left"} Image
             .col-sm-9

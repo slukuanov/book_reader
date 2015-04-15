@@ -3,11 +3,8 @@
     %h1.text-uppercase read. watch. learn
     %p.text-uppercase The best books and courses from the brightest minds.
     %p
-      - if user_signed_in?
-        = link_to 'Learn more', root_path, class: 'btn-lg btn btn-primary'
-      - else
-        = link_to 'Learn more', new_user_session_path, class: 'btn-lg btn btn-primary', :remote => true, "data-toggle" => "modal", "data-target" => "#login-modal"
       - unless user_signed_in?
+        = link_to 'Learn more', new_user_session_path, class: 'btn-lg btn btn-primary', :remote => true, "data-toggle" => "modal", "data-target" => "#login-modal"
         = link_to 'Sign Up', '#', class: 'btn-lg btn btn-warning text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"
 /
   Marketing messaging and featurettes
@@ -16,161 +13,46 @@
 .content
   .container
     .row
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-01.png", alt: "image-01")
-          .caption.text-center
-            %h4 Great Work
-            %p David Sturt
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-02.png", alt: "image-02")
-          .caption.text-center
-            %h4 The Discomfort Zone
-            %p Marcia Reynolds
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-6.col-md-6
-        .thumbnail
-          = image_tag("image-03.png", alt: "image-03")
-          .caption.text-left
-            .row
-              .col-md-6.col-sm-6
-                %h4 The Gifts of Imperfection
-                %p Brené Brown
-                %p.text-left
-                  %a.btn.btn-lg.btn-default.text-uppercase{:href => "#", :role => "button"} More info
-              .col-md-6.col-sm-6
-                %p.text-left The Gifts of Imperfection offers an accessible and engaging walk through the ten principles that you can follow to live a more fulfilling life ...
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-04.png", alt: "image-04")
-          .caption.text-center
-            %h4 The Little Book
-            %p Joel Greenblatt
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-05.png", alt: "image-05")
-          .caption.text-center
-            %h4 Becoming the Boss
-            %p Lindsey Pollak
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-06.png", alt: "image-06")
-          .caption.text-center
-            %h4 The Hard Thing
-            %p Ben Horowitz
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-07.png", alt: "image-07")
-          .caption.text-center
-            %h4 The 80/20 Principle
-            %p Richard Koch
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-6.col-md-6
-        .thumbnail
-          = image_tag("image-03.png", alt: "image-03")
-          .caption.text-left
-            .row
-              .col-md-6.col-sm-6
-                %h4 The Gifts of Imperfection
-                %p Brené Brown
+      - big_content_indexes = [2, 7, 12, 17, 22, 27, 32, 37, 42, 47, 52, 57]
+      - i = 0
+      - @books.each do |book|
+        - unless big_content_indexes.include?(i)
+          .col-sm-3.col-md-3
+            .thumbnail
+              = image_tag(book.get_thumb_listing, class: 'img-responsive')
+              - title = book.title? ? book.title.split.map(&:capitalize).join(' ') : 'N/A'
+              - auther = book.authers? ? book.authers.split(',')[0] : 'N/A'
+              .caption.text-center{style: "min-height: 165px;max-height: 165px;overflow: hidden;"}
+                %h4.title= title
+                %p.auther= auther
+                %p.text-center
+                  = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
+              .overlay.text-left
+                %h4= title
                 %p
-                  %a.btn.btn-lg.btn-default.text-uppercase{:href => "#", :role => "button"} More info
-              .col-md-6.col-sm-6
-                %p.text-left The Gifts of Imperfection offers an accessible and engaging walk through the ten principles that you can follow to live a more fulfilling life ...
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-01.png", alt: "image-01")
-          .caption.text-center
-            %h4 Great Work
-            %p David Sturt
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-      .col-sm-3.col-md-3
-        .thumbnail
-          = image_tag("image-02.png", alt: "image-02")
-          .caption.text-center
-            %h4 The Discomfort Zone
-            %p Marcia Reynolds
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
-          .overlay.text-left
-            %h4 Becoming the Boss
-            %p
-              %i Lindsey Pollak
-            %p Becoming the Boss presents the potential hurdles for leaders in our modern era and some useful tips on how to tackle them.
-            %p.text-center
-              %a.btn.btn-lg.btn-default.text-uppercase{:href => "sub-page.html", :role => "button"} More info
+                  %i= auther
+                %p.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
+                %p.text-center
+                  = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
+        - else
+          .col-sm-6.col-md-6
+            .thumbnail
+              = image_tag(book.get_thumb_big, class: 'img-responsive')
+              - title = book.title? ? book.title.split.map(&:capitalize).join(' ') : 'N/A'
+              - auther = book.authers? ? book.authers.split(',')[0] : 'N/A'
+              .caption.text-left{style: "min-height: 165px;max-height: 165px;overflow: hidden;"}
+                .row
+                  .col-md-6.col-sm-6
+                    %h4.title= title
+                    %p.auther= auther
+                    %p.text-left= link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
+                  .col-md-6.col-sm-6
+                    %p.text-left.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
+              .overlay.text-left
+                %h4= title
+                %p
+                  %i= auther
+                %p.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
+                %p.text-center
+                  = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
+        - i += 1

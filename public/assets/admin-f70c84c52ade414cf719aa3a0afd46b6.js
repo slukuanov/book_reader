@@ -7954,7 +7954,8 @@
               text: 'Tariff for ' + data.user_email + ' was changed',
               type: 'success'
             });
-            return $('.md-modal.md-show .modal-header .md-close').click();
+            $('.md-modal.md-show .modal-header .md-close').click();
+            return location.reload();
           },
           error: function(data, textStatus, jqXHR) {
             noty({

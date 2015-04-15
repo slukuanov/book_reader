@@ -198,8 +198,18 @@
     /*Switch*/
     $('.switch').bootstrapSwitch();
     /*DateTime Picker*/
-      $(".datetime").datetimepicker({format: 'yyyy-mm-dd'});
-      $("#datetime1").datetimepicker({format: 'yyyy-mm-dd'});
+      $(".datetime").datetimepicker({
+        format: 'yyyy-mm-dd',
+        startView: 'decade',
+        minView: 'month',
+        autoclose: true
+        }
+      );
+      $("#datetime1").datetimepicker(
+        {
+          format: 'yyyy-mm-dd'
+        }
+      );
 
     /*Select2*/
       $(".select2").select2({

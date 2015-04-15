@@ -27,6 +27,7 @@ admin =
           $('html, body').css("cursor", "auto")
           noty({text: 'Tariff for ' + data.user_email + ' was changed', type: 'success'})
           $('.md-modal.md-show .modal-header .md-close').click()
+          location.reload()
         error: (data, textStatus, jqXHR) ->
           noty({text: 'Server Error', type: 'error'});
           $('html, body').css("cursor", "auto");

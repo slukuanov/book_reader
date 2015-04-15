@@ -24,6 +24,8 @@
             %th
               %strong Type
             %th
+              %strong Tariff Type
+            %th
               %strong Date Added
         %tbody
           - @books.each do |book|
@@ -32,4 +34,5 @@
               %td= book.authers
               %td= book.categories.map(&:title).join(', ')
               %td.center= Book::TYPES[book.book_type]
+              %td.center= book.is_free ? 'Free' : 'Paid'
               %td #{time_tag(book.created_at)}

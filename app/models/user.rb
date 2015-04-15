@@ -165,6 +165,10 @@ class User < ActiveRecord::Base
     self.provider.blank? ? 'Email' : self.provider
   end
 
+  def has_free_tariff
+    tariff_type == 0
+  end
+
   private
   def set_confirmation_token
     self.update({confirmation_token: SecureRandom.hex})
