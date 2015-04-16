@@ -57,7 +57,10 @@
                 %i.fa.fa-google-plus
           %br/
           - if user_signed_in?
-            = link_to 'Read', read_book_reader_path(@book), class: 'btn-lg btn btn-primary text-uppercase'
+            - if current_user.tariff_type == 0
+              = link_to 'Read', "#", class: 'btn-lg btn btn-primary text-uppercase paid-book'
+            - else
+              = link_to 'Read', read_book_reader_path(@book), class: 'btn-lg btn btn-primary text-uppercase'
           - else
             = link_to 'Sign Up', '#', class: 'btn-lg btn btn-primary text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"
           %button.btn.btn-default.text-uppercase.btn-lg{:type => "button"}

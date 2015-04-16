@@ -15,6 +15,17 @@
 //= require bootstrap.min
 //= require auth.js
 //= require ./reader/popModal.min.js
+//= require noty/jquery.noty
+//= require noty/layouts/topCenter
+//= require noty/themes/default
+
+$.noty.defaults.timeout = 8000
+$.noty.defaults.layout = 'topCenter'
+
+$(document).on('click', '.paid-book', function(e) {
+    e.preventDefault();
+    noty({text: 'This is not free book. Please upgrade your plan.', type: 'error'})
+});
 
 $(document).on('click', '.add-comment', function(e) {
     var that;
