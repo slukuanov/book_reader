@@ -8,13 +8,15 @@
               = image_tag(@book.get_thumb_view, class: 'img-responsive')
             .col-md-12
               - unless @book.synopsis.blank?
-                %br/
                 %h4 What About
                 %p.gray_text
                   = @book.synopsis.try(:html_safe)
+              - unless @book.target_audience.blank?
+                %h4 Who should read this book:
+                %p.gray_text
+                  = @book.target_audience.try(:html_safe)
               - unless @book.author_bio.blank?
-                %br/
-                %h4 Who wrote the book?
+                %h4 Author information:
                 %p.gray_text
                   = @book.author_bio.try(:html_safe)
         .col-md-5.col-md-offset-1
@@ -28,33 +30,17 @@
           %br/
           %p.gray_text
             %span.glyphicon.glyphicon-c.glyphicon-time.inline{"aria-hidden" => "true"}
-              
             %span.text.inline #{@book.duration || 'N/A'} min
           %br/
           %p.gray_text
-            -#%span
-            -#  %img.inline{:alt => "", :src => "images/Psychology.png"}/
             %span.text.inline
               = @book.categories.map(&:title).join(', ')
           %br/
-          %h4.normal_weight Follow Us
-          %br/
           %ul.follow_us
             %li.inline
-              %a.glyphicon-c.gray_text{:href => "#"}
-                %i.fa.fa-linkedin
-            %li.inline
-              %a.glyphicon-c.gray_text{:href => "#"}
-                %i.fa.fa-pinterest-p
-            %li.inline
-              %a.glyphicon-c.gray_text{:href => "#"}
-                %i.fa.fa-twitter
-            %li.inline
-              %a.glyphicon-c.gray_text{:href => "#"}
+              %a.glyphicon-c.gray_text{:href => "#", style: "text-decoration: none;"}
+                %span.normal_weight{style: "font-size: 18px;color: black;"} Follow Us
                 %i.fa.fa-facebook
-            %li.inline
-              %a.glyphicon-c.gray_text{:href => "#"}
-                %i.fa.fa-google-plus
           %br/
           - if user_signed_in?
             - if current_user.tariff_type == 0
@@ -63,6 +49,3 @@
               = link_to 'Read', read_book_reader_path(@book), class: 'btn-lg btn btn-primary text-uppercase'
           - else
             = link_to 'Sign Up', '#', class: 'btn-lg btn btn-primary text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"
-          %button.btn.btn-default.text-uppercase.btn-lg{:type => "button"}
-            Send to
-            %span.orange_text kindle
