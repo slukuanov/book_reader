@@ -44,6 +44,13 @@ gem 'acts_as_commentable'
 # gem 'unicorn'
 # gem 'capistrano-rails', group: :development
 
+group :development do
+  gem 'quiet_assets'
+  gem 'capistrano'
+  gem 'rvm-capistrano'
+  gem 'capistrano-unicorn', require: false
+end
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -51,6 +58,10 @@ group :development, :test do
 end
 
 group :production do
+  gem 'unicorn'
+end
+
+group :heroku do
   gem 'rails_12factor'
 end
 
