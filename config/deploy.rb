@@ -7,7 +7,7 @@ set :scm, :git # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perf
 set :repository,  "git@github.com:knguyen0105/docnhanh.git"
 set :deploy_via, :copy
 set :copy_strategy, :export
-set :default_stage, :staging
+set :default_stage, :production
 
 set :bundle_flags, "--deployment"
 set :keep_releases, 10
