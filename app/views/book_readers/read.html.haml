@@ -21,7 +21,7 @@
         .content
           .scroller
             %h2.chapter-title= chapter.title
-            .chapter-content= chapter.content.try(:html_safe)
+            .chapter-content= raw chapter.content
       %br
   %nav
     %span#bb-nav-prev ←
