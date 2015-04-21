@@ -8,6 +8,6 @@ class CategoriesController < ApplicationController
 
   private
   def set_category
-    @category = Category.find_by_title(params[:id])
+    @category = Category.find_by_id(params[:id])
   end
 end
