@@ -12,7 +12,7 @@ highlight =
       onDocumentClickClose: true
       onDocumentClickClosePrevent: ''
       overflowContent: false
-      inline: true
+      inline: false
       beforeLoadingContent: 'Please, wait...'
       onOkBut: ->
         that.removeClass('pre-highlight')

@@ -81,8 +81,6 @@ test:
 production:
   <<: *default
   database: docnhanh_production
-  username: docnhanh
-  password: <%= ENV['DOCNHANH_DATABASE_PASSWORD'] %>
 
 heroku:
   <<: *default
