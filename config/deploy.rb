@@ -26,6 +26,6 @@ set(:deploy_to) { "/var/www/apps/#{application}" }
 
 set :shared_children, shared_children + %w{public/img}
 
-after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
+after 'deploy:restart', 'unicorn:reload'    # appf IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
