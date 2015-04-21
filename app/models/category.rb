@@ -5,4 +5,5 @@ class Category < ActiveRecord::Base
   scope :search, lambda{|query| where('title ILIKE :query ', {query: "%#{query}%"}) }
 
   validates :title, :presence => true, :uniqueness => true
+  before_destroy { books.clear }
 end

@@ -8,16 +8,16 @@
               = image_tag(@book.get_thumb_view, class: 'img-responsive')
             .col-md-12
               - unless @book.synopsis.blank?
-                %h4 What About
-                %p.gray_text
+                %h3 What About
+                %p.about-book-content
                   = @book.synopsis.try(:html_safe)
               - unless @book.target_audience.blank?
-                %h4 Who should read this book:
-                %p.gray_text
+                %h3 Who should read this book:
+                %p.audience-content
                   = @book.target_audience.try(:html_safe)
               - unless @book.author_bio.blank?
-                %h4 Author information:
-                %p.gray_text
+                %h3 Author information:
+                %p.authors-content
                   = @book.author_bio.try(:html_safe)
         .col-md-5.col-md-offset-1
           %h3.text-uppercase

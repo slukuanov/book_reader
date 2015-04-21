@@ -317,3 +317,30 @@ a:hover {
 /*.popModal .popModal_content a{*/
     /*margin-right: 6px;*/
 /*}*/
+
+
+.chapter-title {
+    font-family: 'Roboto Slab', serif !important;
+    font-size: 36px !important;
+}
+
+.chapter-content{
+    font-family: 'Roboto Slab', serif !important;
+    font-size: 18px !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+}
+
+.chapter-content span {
+    font-family: 'Roboto Slab', serif !important;
+    font-size: 18px !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+}
+
+.chapter-content * {
+    font-family: 'Roboto Slab', serif !important;
+    font-size: 18px !important;
+    line-height: normal !important;
+    letter-spacing: normal !important;
+}

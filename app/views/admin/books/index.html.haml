@@ -27,6 +27,8 @@
               %strong Tariff Type
             %th
               %strong Date Added
+            %th
+              %strong Action
         %tbody
           - @books.each do |book|
             %tr.edit-book.odd.gradeX{"data-href" => edit_admin_book_path(book)}
@@ -36,3 +38,4 @@
               %td.center= Book::TYPES[book.book_type]
               %td.center= book.is_free ? 'Free' : 'Paid'
               %td #{time_tag(book.created_at)}
+              %td= link_to 'Delete', admin_book_path(book), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-warning', :title => 'Delete'

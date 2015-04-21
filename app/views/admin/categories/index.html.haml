@@ -25,5 +25,5 @@
         %td= link_to category.id, admin_category_path(category)
         %td= category.title
         %td
-          = link_to 'Edit', edit_admin_category_path(category), :class => 'button-edit', :title => 'Edit'
-          = link_to 'Delete', admin_category_path(category), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'button-delete', :title => 'Delete'
+          = link_to 'Edit', edit_admin_category_path(category), :class => 'btn btn-primary', :title => 'Edit'
+          = link_to 'Delete', admin_category_path(category), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-warning', :title => 'Delete'
