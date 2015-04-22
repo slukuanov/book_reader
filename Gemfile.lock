@@ -105,6 +105,8 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     acts_as_commentable (4.0.2)
+    acts_as_list (0.6.0)
+      activerecord (>= 3.0)
     arel (6.0.0)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
@@ -337,6 +339,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.4.2)
+    ranked-model (0.4.0)
+      activerecord (>= 3.1.12)
     rdoc (4.2.0)
       json (~> 1.4)
     ref (1.0.5)
@@ -406,6 +410,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_commentable
+  acts_as_list
   awesome_nested_fields!
   byebug
   cancan
@@ -431,6 +436,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.2.1)
   rails_12factor
+  ranked-model
   remotipart (~> 1.2)
   rvm-capistrano
   sass-rails (~> 5.0)

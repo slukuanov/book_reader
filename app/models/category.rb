@@ -6,4 +6,7 @@ class Category < ActiveRecord::Base
 
   validates :title, :presence => true, :uniqueness => true
   before_destroy { books.clear }
+
+  include RankedModel
+  ranks :row_order
 end

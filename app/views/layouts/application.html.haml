@@ -33,7 +33,7 @@
                         Genres
                         %span.caret
                       %ul.dropdown-menu{:role => "menu"}
-                        - Category.all.each do |category|
+                        - Category.rank(:row_order).all.each do |category|
                           %li
                             = link_to category.title, category_path(category)
                   %ul.nav.navbar-nav.navbar-right

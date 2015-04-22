@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/favorite_list', to: 'books#favorite_list', as: 'user_favorite_list'
   get '/highlight_list', to: 'books#highlight_list', as: 'user_highlight_list'
   get '/delete_highlight/:id', to: 'books#delete_highlight', as: 'delete_highlight'
+  post '/admin/categories/:id/move', to: 'admin/categories#move', as: 'move_admin_category'
 
   resources :books do
     collection do

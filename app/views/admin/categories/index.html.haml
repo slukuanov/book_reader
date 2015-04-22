@@ -23,7 +23,15 @@
     - @categories.each do |category|
       %tr{id: category.id}
         %td= link_to category.id, admin_category_path(category)
-        %td= category.title
+        %td{style: "font-size: 20px;"}= category.title
         %td
-          = link_to 'Edit', edit_admin_category_path(category), :class => 'btn btn-primary', :title => 'Edit'
-          = link_to 'Delete', admin_category_path(category), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-warning', :title => 'Delete'
+          .row
+            .col-md-4{style: "font-size: 35px; text-align: center;"}
+              = link_to '', move_admin_category_path(category, position: :up), :class => 'fa fa-toggle-up', method: :post
+              = link_to '', move_admin_category_path(category, position: :down), :class => 'fa fa-toggle-down', method: :post
+            .col-md-4{style: "font-size: 35px; text-align: center;"}
+              = link_to '', move_admin_category_path(category, position: :first), :class => 'fa fa-level-up', :data => { :confirm =>  'Are you sure? The item will be moved to the TOP of list.' }, method: :post
+              = link_to '', move_admin_category_path(category, position: :last), :class => 'fa fa-level-down', :data => { :confirm =>  'Are you sure? The item will be moved to the BOTTOM of list.' }, method: :post
+            .col-md-4{style: "text-align: center;"}
+              = link_to 'Edit', edit_admin_category_path(category), :class => 'btn btn-primary', :title => 'Edit'
+              = link_to 'Delete', admin_category_path(category), :method => :delete, :data => { :confirm =>  'Are you sure?' }, :class => 'btn btn-warning', :title => 'Delete'

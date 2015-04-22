@@ -1,9 +1,9 @@
 class Admin::CategoriesController < Admin::AdminController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy, :move]
   skip_before_filter :verify_authenticity_token, only: [:search]
 
   def index
-    @categories = Category.all
+    @categories = Category.rank(:row_order).all
     respond_to do |format|
       format.html
     end
@@ -28,6 +28,7 @@ class Admin::CategoriesController < Admin::AdminController
     @category = Category.new(category_params)
 
     if @category.save
+      @category.update_attribute :row_order_position, :last
       redirect_to [:admin, @category], notice: 'Category was successfully created.'
     else
       render action: 'new'
@@ -56,12 +57,17 @@ class Admin::CategoriesController < Admin::AdminController
     end
   end
 
+  def move
+    @category.update_attribute :row_order_position, params[:position]
+    redirect_to admin_categories_path, success: 'Update success'
+  end
+
   private
     def set_category
       @category = Category.find(params[:id])
     end
 
     def category_params
-      params.require(:category).permit(:title)
+      params.require(:category).permit(:title, :row_order)
     end
 end
