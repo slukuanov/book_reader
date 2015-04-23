@@ -22,8 +22,8 @@ set(:unicorn_env) { rails_env }
 set(:unicorn_config_file_path) { "#{current_path}/config/unicorn.rb" }
 set(:unicorn_pid) { "/tmp/unicorn.#{application}.pid" }
 
-set(:deploy_by_user) { application }
-set(:user) { application }
+set(:deploy_by_user) { 'deploy' }
+set(:user) { 'deploy' }
 set(:deploy_to) { "/home/deploy/#{application}" }
 
 set :shared_children, shared_children + %w{public/img}
