@@ -22,7 +22,7 @@ set(:unicorn_pid) { "/tmp/unicorn.#{application}.pid" }
 
 set(:deploy_by_user) { application }
 set(:user) { application }
-set(:deploy_to) { "/var/www/apps/#{application}" }
+set(:deploy_to) { "/home/deploy/#{application}" }
 
 set :shared_children, shared_children + %w{public/img}
 
