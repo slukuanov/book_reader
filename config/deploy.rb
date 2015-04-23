@@ -2,7 +2,6 @@ set :application, "docnhanh"
 
 require "bundler/capistrano"
 require "capistrano/ext/multistage"
-require "rvm/capistrano"
 require 'capistrano-unicorn'
 
 set :scm, :git # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -18,13 +17,13 @@ set :install_gems, true
 set :backup_database_before_migrations, true
 set :bundle_without, [:development, :test, :cucumber]
 
-require 'capistrano/rvm'
-set :rvm_type, :user
-set :rvm_ruby_version, '2.0.0-p643'
-set :rvm_ruby_string, "ruby-2.0.0-p643@{application}"
-set :rvm_path, "/home/deploy/.rvm/src/rvm"
-set :rvm_bin_path, "#{rvm_path}/bin"
-set :rvm_lib_path,  "#{rvm_path}/lib"
+set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
+set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
+
+# before 'deploy:setup', 'rvm:install_rvm'  # install/update RVM
+# before 'deploy:setup', 'rvm:install_ruby'
+require "rvm/capistrano"
+
 
 set(:unicorn_env) { rails_env }
 set(:unicorn_config_file_path) { "#{current_path}/config/unicorn.rb" }
