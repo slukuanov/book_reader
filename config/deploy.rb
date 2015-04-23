@@ -1,3 +1,5 @@
+set :application, "docnhanh"
+
 require "bundler/capistrano"
 require "capistrano/ext/multistage"
 require "rvm/capistrano"
