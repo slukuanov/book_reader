@@ -18,6 +18,14 @@ set :install_gems, true
 set :backup_database_before_migrations, true
 set :bundle_without, [:development, :test, :cucumber]
 
+require 'capistrano/rvm'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.0.0-p643'
+set :rvm_ruby_string, "ruby-2.0.0-p643@{application}"
+set :rvm_path, "/home/deploy/.rvm/src/rvm"
+set :rvm_bin_path, "#{rvm_path}/bin"
+set :rvm_lib_path,  "#{rvm_path}/lib"
+
 set(:unicorn_env) { rails_env }
 set(:unicorn_config_file_path) { "#{current_path}/config/unicorn.rb" }
 set(:unicorn_pid) { "/tmp/unicorn.#{application}.pid" }
