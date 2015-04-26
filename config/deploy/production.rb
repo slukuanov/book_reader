@@ -1,4 +1,4 @@
-set :rvm_ruby_string, 'ruby-2.0.0-p643@docnhanh'
+set :rvm_ruby_string, 'ruby-2.0.0-p645@docnhanh'
 set :rvm_type, :system # defaults to using a user installation of rvm
 
 # set :ssh_options, { forward_agent: true, keys: ['~/.ssh/cardrive']  }
