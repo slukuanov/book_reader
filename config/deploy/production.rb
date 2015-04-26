@@ -5,7 +5,7 @@ set :rvm_type, :system # defaults to using a user installation of rvm
 set :branch, "master"
 set :rails_env, "production"
 
-set :host_name, "192.241.200.166"
+set :host_name, "128.199.103.139"
 
 role :web, host_name                # Your HTTP server, Apache/etc
 role :app, host_name                # This may be the same as your `Web` server
