@@ -81,6 +81,7 @@ test:
 production:
   <<: *default
   database: docnhanh_production
+  username: deploy
 
 heroku:
   <<: *default
