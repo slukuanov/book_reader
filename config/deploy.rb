@@ -15,7 +15,7 @@ set :keep_releases, 10
 set :use_sudo, false
 set :install_gems, true
 set :backup_database_before_migrations, true
-set :bundle_without, [:development, :test, :cucumber]
+set :bundle_without, [:development, :test]
 
 set :rvm_ruby_string, :local              # use the same ruby as used locally for deployment
 set :rvm_autolibs_flag, "read-only"       # more info: rvm help autolibs
