@@ -35,6 +35,13 @@ set(:deploy_to) { "/home/deploy/#{application}" }
 
 set :shared_children, shared_children + %w{public/img}
 
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
+
 after 'deploy:restart', 'unicorn:reload'    # appf IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
