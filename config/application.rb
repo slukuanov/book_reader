@@ -25,5 +25,8 @@ module Docnhanh
     config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
     config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
     config.assets.precompile += %w( admin.js admin.css reader.js reader.css )
+    I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml')]
+    config.i18n.available_locales = [ :vi, :en ]
+    config.i18n.default_locale    = :vi
   end
 end

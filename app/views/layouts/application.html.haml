@@ -30,7 +30,7 @@
                   %ul.nav.navbar-nav.col-xs-2
                     %li.dropdown
                       %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                        Genres
+                        = t('homepage.genres')
                         %span.caret
                       %ul.dropdown-menu{:role => "menu"}
                         - Category.rank(:row_order).all.each do |category|
@@ -58,6 +58,15 @@
                           %li.divider
                           - if user_signed_in?
                             %li= link_to 'Logout', destroy_user_session_path, method: :delete
+                      %li.dropdown
+                        %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                          Language
+                          %span.caret
+                        %ul.dropdown-menu{:role => "menu"}
+                          %li{class: (I18n.locale == :en ? 'active' : '')}
+                            = link_to 'English', locale: 'en'
+                          %li{class: (I18n.locale == :vi ? 'active' : '')}
+                            = link_to 'Vietnamese', locale: 'vi'
 -#- flash.each do |key, value|
 -#  .global-alert.col-md-6.col-md-offset-3{class: "#{key}"}
 -#    %div

@@ -1,0 +1,16 @@
+vi:
+  homepage:
+    genres: Thể loại
+    search: Tìm kiếm
+    learn_more: Đăng nhập
+    sign_up: Đăng ký
+    more_info: Thông tin
+    help: Trợ giúp
+    about: Về chúng tôi
+    partner: Đối tác
+    terms_and_privacy: Điều khoản sử dụng
+    favorite_books: Sách yêu thích
+    highlights: [keep as-is]
+    logout: Thoát
+    read_watch_learn: Mỗi ngày đọc một quyển sách
+    brightest_minds: Chúng tôi chọn những cuốn sách hay và bổ ích nhất cho bạn.
