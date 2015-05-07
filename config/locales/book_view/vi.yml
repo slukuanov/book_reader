@@ -1,0 +1,5 @@
+vi:
+  book_view:
+    add_to_favorite: 'Thêm vào danh sách yêu thích'
+    delete_from_favorite: 'Delete from favorite'
+    exit: 'Thoát'

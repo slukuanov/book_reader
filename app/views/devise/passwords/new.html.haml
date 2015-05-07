@@ -1,6 +1,6 @@
 .modal-body
   %h3#myModalLabel2.modal-title.text-center
-    Forgot your password
+    = t('login_form.forgot_password')
   = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html=> { class: 'form-horizontal' }) do |f|
     %fieldset
       .form-group

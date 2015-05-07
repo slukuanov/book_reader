@@ -2,13 +2,13 @@
 - current_chapter_id = @user_book.current_chapter_id
 .menu-panel
   .manage
-    - kls = @user_book.favorite ? ['remove-from-favorite', 'fa-star-o', 'DEL FROM FAVORITE'] : ['add-to-favorite', 'fa-star', 'ADD TO FAVORITE']
+    - kls = @user_book.favorite ? ['remove-from-favorite', 'fa-star-o', t('book_view.delete_from_favorite')] : ['add-to-favorite', 'fa-star', t('book_view.add_to_favorite')]
     %a.remove-from-favorite.favorite-manage{class: kls[0], href: "#", data: {user_book_id: @user_book.id}}
       %i.fa{class: kls[1]}
       %span= kls[2]
     %a{:href => category_path(@book.categories.first)}
       %i.fa.fa-sign-out
-      %span EXIT
+      %span= t('book_view.exit')
   %ul#menu-toc.menu-toc
     - chapters.each do |chapter|
       - klass_active = current_chapter_id == chapter.id ? 'menu-toc-current' : ''

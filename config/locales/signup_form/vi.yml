@@ -1,0 +1,7 @@
+vi:
+  signup_form:
+    signup_for: 'Đăng ký tài khoản docnhanh'
+    signup_with: "Đăng ký qua tài khoản %{obj}"
+    have_account: 'Bạn đã có tài khoản?'
+    or: 'Hoặc'
+    login_with: "Đăng nhập với tài khoản %{obj}"

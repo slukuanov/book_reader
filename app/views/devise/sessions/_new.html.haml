@@ -1,6 +1,6 @@
 .modal-body
   %h3#myModalLabel.modal-title.text-center
-    Login to
+    = t('login_form.login_to')
     %span.blue-color docnhanh
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :format => :js, :html=> { class: 'form-horizontal login-form', :'data-type' => 'json' }) do |f|
     %fieldset
@@ -10,25 +10,25 @@
           = f.input :email, label: false, :required => false, :input_html => { class: 'form-control input-md', placeholder: "E-mail" }
       .form-group
         .col-sm-12
-          = f.input :password, label: false, :required => false, :input_html => { class: 'form-control input-md', placeholder: "Password" }
+          = f.input :password, label: false, :required => false, :input_html => { class: 'form-control input-md', placeholder: t('login_form.password') }
       .form-group
         .col-sm-12
           .checkbox
-            = f.input :remember_me, label: 'Remember me', id:"checkboxes-0", :input_html => { :checked => true }, :as => :boolean if devise_mapping.rememberable?
+            = f.input :remember_me, label: t('login_form.remember_me'), id:"checkboxes-0", :input_html => { :checked => true }, :as => :boolean if devise_mapping.rememberable?
       .form-group.text-center
         .col-sm-12
           = f.button :submit, "LOG IN", class: "btn btn-md btn-primary", id: 'singlebutton'
-      = link_to 'Forgot your password?', new_password_path(resource_name), class: "remember_link pull-left already"
-      = link_to 'Don’t have an account?', new_user_registration_path, class: 'pull-right already', :remote => true, "data-toggle" => "modal", "data-dismiss" => "modal", "data-target" => "#registration-via-email-modal"
+      = link_to t('login_form.forgot_password'), new_password_path(resource_name), class: "remember_link pull-left already"
+      = link_to t('login_form.have_not_account'), new_user_registration_path, class: 'pull-right already', :remote => true, "data-toggle" => "modal", "data-dismiss" => "modal", "data-target" => "#registration-via-email-modal"
 .center-or
-  %p.text-center.center-heading Or
+  %p.text-center.center-heading= t('login_form.or')
 .modal-body
   %ul.ualink-social-link
     %li
       %a.btn.btn-facebook.popup{:href => "/users/auth/facebook/", :"data-width" => 600, :"data-height" => 400}
         %i.fa.fa-facebook
-        %span Login With Facebook
+        %span= t('login_form.login_with', obj: 'Facebook')
     %li
       %a.btn.btn-google.popup{:href => "/users/auth/google_oauth2/", :"data-width" => 600, :"data-height" => 400}
         %i.fa.fa-google-plus
-        %span Login With Google+
+        %span= t('login_form.login_with', obj: 'Google+')

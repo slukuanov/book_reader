@@ -1,11 +1,11 @@
 .jumbotron
   .container
-    %h1.text-uppercase read. watch. learn
-    %p.text-uppercase The best books and courses from the brightest minds.
+    %h1.text-uppercase= t('homepage.read_watch_learn')
+    %p.text-uppercase= t('homepage.brightest_minds')
     %p
       - unless user_signed_in?
-        = link_to 'Learn more', new_user_session_path, class: 'btn-lg btn btn-primary', :remote => true, "data-toggle" => "modal", "data-target" => "#login-modal"
-        = link_to 'Sign Up', '#', class: 'btn-lg btn btn-warning text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"
+        = link_to t('homepage.learn_more'), new_user_session_path, class: 'btn-lg btn btn-primary', :remote => true, "data-toggle" => "modal", "data-target" => "#login-modal"
+        = link_to t('homepage.sign_up'), '#', class: 'btn-lg btn btn-warning text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"
 /
   Marketing messaging and featurettes
   \==================================================
@@ -13,46 +13,21 @@
 .content
   .container#books-list
     .row
-      - big_content_indexes = [2, 7, 12, 17, 22, 27, 32, 37, 42, 47, 52, 57]
-      - i = 0
       - @books.each do |book|
-        - unless big_content_indexes.include?(i)
-          .col-sm-3.col-md-3
-            .thumbnail
-              = image_tag(book.get_thumb_listing, class: 'img-responsive')
-              - title = book.title? ? book.title.split.map(&:capitalize).join(' ') : 'N/A'
-              - auther = book.authers? ? book.authers.split(',')[0] : 'N/A'
-              .caption.text-center{style: "min-height: 165px;max-height: 165px;overflow: hidden;"}
-                %h4.title= title
-                %p.auther= auther
-                %p.text-center
-                  = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
-              .overlay.text-left
-                %h4= title
-                %p
-                  %i= auther
-                %p.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
-                %p.text-center
-                  = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
-        - else
-          .col-sm-6.col-md-6
-            .thumbnail
-              = image_tag(book.get_thumb_big, class: 'img-responsive')
-              - title = book.title? ? book.title.split.map(&:capitalize).join(' ') : 'N/A'
-              - auther = book.authers? ? book.authers.split(',')[0] : 'N/A'
-              .caption.text-left{style: "min-height: 165px;max-height: 165px;overflow: hidden;"}
-                .row
-                  .col-md-6.col-sm-6
-                    %h4.title= title
-                    %p.auther= auther
-                    %p.text-left= link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
-                  .col-md-6.col-sm-6
-                    %p.text-left.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
-              .overlay.text-left
-                %h4= title
-                %p
-                  %i= auther
-                %p.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
-                %p.text-center
-                  = link_to 'More info', book_path(book), class: 'btn btn-lg btn-default text-uppercase'
-        - i += 1
+        .col-sm-3.col-md-3
+          .thumbnail
+            = image_tag(book.get_thumb_listing, class: 'img-responsive')
+            - title = book.title? ? book.title.split.map(&:capitalize).join(' ') : 'N/A'
+            - auther = book.authers? ? book.authers.split(',')[0] : 'N/A'
+            .caption.text-center{style: "min-height: 165px;max-height: 165px;overflow: hidden;"}
+              %h4.title= title
+              %p.auther= auther
+              %p.text-center
+                = link_to t('homepage.more_info'), book_path(book), class: 'btn btn-lg btn-default text-uppercase'
+            .overlay.text-left
+              %h4= title
+              %p
+                %i= auther
+              %p.synopsis= ActionView::Base.full_sanitizer.sanitize(book.synopsis)
+              %p.text-center
+                = link_to t('homepage.more_info'), book_path(book), class: 'btn btn-lg btn-default text-uppercase'

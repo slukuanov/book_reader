@@ -42,7 +42,7 @@
                         .col-xs-12
                           .right-inner-addon
                             %i.fa.fa-search
-                            %input.form-control{:placeholder => "Search", :type => "search"}/
+                            %input.form-control{:placeholder => t('homepage.search'), :type => "search"}/
                     - if user_signed_in?
                       %li.dropdown
                         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -50,14 +50,14 @@
                           %span.caret
                         %ul.dropdown-menu{:role => "menu"}
                           %li
-                            = link_to 'Favorite Books', user_favorite_list_path
+                            = link_to t('homepage.favorite_books'), user_favorite_list_path
                           %li
-                            = link_to 'Highlights', user_highlight_list_path
+                            = link_to t('homepage.highlights'), user_highlight_list_path
                           - if user_signed_in? && current_user.role == 'admin'
                             %li= link_to 'Administration', admin_path
                           %li.divider
                           - if user_signed_in?
-                            %li= link_to 'Logout', destroy_user_session_path, method: :delete
+                            %li= link_to t('homepage.logout'), destroy_user_session_path, method: :delete
                       %li.dropdown
                         %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                           Language
@@ -88,24 +88,23 @@
     .modal-content
       .modal-body
         %h3#myModalLabel1.modal-title.text-center
-          Sign Up for
-          %span.blue-color docnhanh
+          = t('signup_form.signup_for')
         .signup-btn
           %ul.ualink-social-link
             %li
               %a.btn.btn-facebook.popup{:href => "/users/auth/facebook/", :"data-width" => 600, :"data-height" => 400}
                 %i.fa.fa-facebook
-                %span Sign Up With Facebook
+                %span= t('signup_form.signup_with', obj: 'Facebook')
             %li
               %a.btn.btn-google.popup{:href => "/users/auth/google_oauth2/", :"data-width" => 600, :"data-height" => 400}
                 %i.fa.fa-google-plus
-                %span Sign Up With Google+
+                %span= t('signup_form.signup_with', obj: 'Google+')
             %li
               %a.btn.btn-email{:href => new_user_registration_path,  'data-remote' => 'true', "data-toggle" => "modal", "data-dismiss" => "modal", "data-target" => "#registration-via-email-modal"}
                 %i.fa.fa-email
                   = image_tag("email.png")
-                %span Sign Up With Email
-          %p.text-center.already Already have an account?
+                %spant= t('signup_form.signup_with', obj: 'Email')
+          %p.text-center.already=t('signup_form.have_account')
       .center-or
         %p.text-center.center-heading Or
       .modal-body
@@ -113,8 +112,8 @@
           %li
             %a.btn.btn-facebook.popup{:href => "/users/auth/facebook/", :"data-width" => 600, :"data-height" => 400}
               %i.fa.fa-facebook
-              %span Login With Facebook
+              %span= t('login_form.login_with', obj: 'Facebook')
           %li
             %a.btn.btn-google.popup{:href => "/users/auth/google_oauth2/", :"data-width" => 600, :"data-height" => 400}
               %i.fa.fa-google-plus
-              %span Login With Google+
+              %span= t('login_form.login_with', obj: 'Google+')

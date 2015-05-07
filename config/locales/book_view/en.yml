@@ -1,0 +1,5 @@
+en:
+  book_view:
+    add_to_favorite: 'Add to favorite'
+    delete_from_favorite: 'Delete from favorite'
+    exit: 'Exit'

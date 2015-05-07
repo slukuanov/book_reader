@@ -1,16 +1,16 @@
 en:
   homepage:
-    genres: Genres
-    search: Search
-    learn_more: Learn more
-    sign_up: Sign up
-    more_info: More info
-    help: Help
-    about: About
-    partner: Partner
-    terms_and_privacy: Terms and Privacy
-    favorite_books: Favorite Books
-    highlights: Highlights
-    logout: Logout
-    read_watch_learn: Read. Watch. Learn
-    brightest_minds: The best books and courses from the brightest minds
+    genres: 'Genres'
+    search: 'Search'
+    learn_more: 'Learn more'
+    sign_up: 'Sign up'
+    more_info: 'More info'
+    help: 'Help'
+    about: 'About'
+    partner: 'Partner'
+    terms_and_privacy: 'Terms and Privacy'
+    favorite_books: 'Favorite Books'
+    highlights: 'Highlights'
+    logout: 'Logout'
+    read_watch_learn: 'Read. Watch. Learn'
+    brightest_minds: 'The best books and courses from the brightest minds'

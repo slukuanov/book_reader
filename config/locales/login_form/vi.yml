@@ -1,0 +1,9 @@
+vi:
+  login_form:
+    login_to: 'Đăng nhập vào'
+    password: 'Mật khẩu'
+    remember_me: 'Nhớ tôi'
+    forgot_password: 'Quên mật khẩu?'
+    have_not_account: 'Bạn chưa có tài khoản?'
+    or: 'Hoặc'
+    login_with: "Đăng nhập với tài khoản %{obj}"

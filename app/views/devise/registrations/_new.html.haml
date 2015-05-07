@@ -1,7 +1,6 @@
 .modal-body
   %h3#myModalLabel2.modal-title.text-center
-    Registration to
-    %span.blue-color docnhanh
+    = t('signup_form.signup_for')
   = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :format => :js, :html=> { class: 'form-horizontal login-form', :'data-type' => 'json' }) do |f|
     %fieldset
       .form-group
@@ -19,4 +18,4 @@
       .form-group.text-center
         .col-sm-12
           = f.button :submit, "Submit", class: "btn btn-md btn-primary", style: "padding-left: 15px;"
-      = link_to 'Already have an account?', new_user_session_path, class: 'pull-right already', :remote => true, "data-toggle" => "modal", "data-dismiss" => "modal", "data-target" => "#login-modal"
+      = link_to t('signup_form.have_account'), new_user_session_path, class: 'pull-right already', :remote => true, "data-toggle" => "modal", "data-dismiss" => "modal", "data-target" => "#login-modal"

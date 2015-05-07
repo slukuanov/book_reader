@@ -8,15 +8,15 @@
               = image_tag(@book.get_thumb_view, class: 'img-responsive')
             .col-md-12
               - unless @book.synopsis.blank?
-                %h3 What About
+                %h3= t('book_info.what_about')
                 %p.about-book-content
                   = @book.synopsis.try(:html_safe)
               - unless @book.target_audience.blank?
-                %h3 Who should read this book:
+                %h3= t('book_info.who_should_read')
                 %p.audience-content
                   = @book.target_audience.try(:html_safe)
               - unless @book.author_bio.blank?
-                %h3 Author information:
+                %h3= t('book_info.author_info')
                 %p.authors-content
                   = @book.author_bio.try(:html_safe)
         .col-md-5.col-md-offset-1
@@ -39,13 +39,12 @@
           %ul.follow_us
             %li.inline
               %a.glyphicon-c.gray_text{:href => "#", style: "text-decoration: none;"}
-                %span.normal_weight{style: "font-size: 18px;color: black;"} Follow Us
                 %i.fa.fa-facebook
           %br/
           - if user_signed_in?
             - if current_user.has_free_tariff && !@book.is_free
-              = link_to 'Read', "#", class: 'btn-lg btn btn-primary text-uppercase paid-book'
+              = link_to t('book_info.read'), "#", class: 'btn-lg btn btn-primary text-uppercase paid-book'
             - else
-              = link_to 'Read', read_book_reader_path(@book), class: 'btn-lg btn btn-primary text-uppercase'
+              = link_to t('book_info.read'), read_book_reader_path(@book), class: 'btn-lg btn btn-primary text-uppercase'
           - else
-            = link_to 'Sign Up', '#', class: 'btn-lg btn btn-primary text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"
+            = link_to t('homepage.sign_up'), '#', class: 'btn-lg btn btn-primary text-uppercase', "data-toggle" => "modal", "data-target" => "#registrations-modal"

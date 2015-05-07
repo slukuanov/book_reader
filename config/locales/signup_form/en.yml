@@ -1,0 +1,7 @@
+en:
+  signup_form:
+    signup_for: 'Signup for docnhanh'
+    signup_with: "Signup with %{obj}"
+    have_account: 'Already have an account?'
+    or: 'Or'
+    login_with: "Login with %{obj}"

@@ -1,0 +1,9 @@
+en:
+  login_form:
+    login_to: 'Login to'
+    password: 'Password'
+    remember_me: 'Remember me'
+    forgot_password: 'Forgot your password?'
+    have_not_account: "Don't have an account?"
+    or: 'Or'
+    login_with: "Login with %{obj}"
